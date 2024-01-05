@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Case Data Extractor</title>
+</head>
+<body>
+    <h1>Enter Case Number</h1>
+    <form method="post">
+        <input type="text" name="case_number" placeholder="Enter Case Number" required>
+        <button type="submit">Extract Data</button>
+    </form>
+    {% if extracted_text %}
+        <h2>Extracted Text:</h2>
+        <p>{{ extracted_text }}</p>
+    {% endif %}
+</body>
+</html>
