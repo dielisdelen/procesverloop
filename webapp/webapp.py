@@ -6,10 +6,11 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def index():
     extracted_text = ""
+    case_number = ""
     if request.method == 'POST':
         case_number = request.form.get('case_number')
         extracted_text = scrape_case(case_number)  # Call your refactored scraping function
-    return render_template('index.html', extracted_text=extracted_text)
+    return render_template('index.html', extracted_text=extracted_text, case_number=case_number)
 
 if __name__ == '__main__':
     app.run(debug=True)

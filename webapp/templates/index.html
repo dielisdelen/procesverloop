@@ -2,15 +2,20 @@
 <html>
 <head>
     <title>Case Data Extractor</title>
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 </head>
 <body>
     <h1>Enter Case Number</h1>
     <form method="post">
         <input type="text" name="case_number" placeholder="Enter Case Number" required>
-        <button type="submit">Extract Data</button>
+        <button type="submit" class="mdc-button mdc-button--raised">Extract Data</button>
     </form>
+    {% if case_number %}
+        <h2>Case Number: {{ case_number }}</h2>
+    {% endif %}
     {% if extracted_text %}
-        <h2>Extracted Text:</h2>
+        <h2>Procesverloop</h2>
         <p>{{ extracted_text }}</p>
     {% endif %}
 </body>
