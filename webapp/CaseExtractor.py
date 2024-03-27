@@ -36,6 +36,12 @@ def scrape_case(case_number):
         extracted_texts = [block.get_text(strip=True) for block in text_blocks]
         extracted_text = ' '.join(extracted_texts)
     else:
-        extracted_text = "Procesverloop section not found."
+        # If the primary div is not found, try the secondary div
+        secondary_div = soup.find('div', class_='rs-panel rs-panel-type-1')
+        if secondary_div:
+            extracted_text = secondary_div.get_text(separator=' ', strip=True)
+        else:
+            # Fallback to extracting the entire text or handle as needed
+            extracted_text = "Specific content not found."
 
     return extracted_text
