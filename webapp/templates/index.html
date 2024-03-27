@@ -6,17 +6,38 @@
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 </head>
 <body>
-    <h1>Enter Case Number</h1>
-    <form method="post">
-        <input type="text" name="case_number" placeholder="Enter Case Number" required>
-        <button type="submit" class="mdc-button mdc-button--raised">Extract Data</button>
-    </form>
-    {% if case_number %}
-        <h2>Case Number: {{ case_number }}</h2>
-    {% endif %}
-    {% if extracted_text %}
-        <h2>Procesverloop</h2>
-        <p>{{ extracted_text }}</p>
-    {% endif %}
+    <div class="mdc-typography">
+        <h1>Enter Case Number</h1>
+        <form action="/timeline" method="get">
+            <button type="submit" class="btn btn-primary">View Timeline</button>
+        </form>        
+        <form method="post">
+            <div class="mdc-text-field">
+                <input type="text" id="case_number" name="case_number" class="mdc-text-field__input" placeholder="Enter Case Number" required>
+                <label class="mdc-floating-label" for="case_number"></label>
+                <div class="mdc-line-ripple"></div>
+            </div>
+            <input type="hidden" name="action" value="extract">
+            <button type="submit" class="mdc-button mdc-button--raised">Extract Data</button>
+        </form>
+        {% if case_number %}
+            <h2>Case Number: {{ case_number }}</h2>
+        {% endif %}
+        {% if extracted_text %}
+            <h2>Procesverloop</h2>
+            <p>{{ extracted_text }}</p>
+            <form method="post">
+                <input type="hidden" name="case_number" value="{{ case_number }}">
+                <input type="hidden" name="extracted_text" value="{{ extracted_text }}">
+                <input type="hidden" name="action" value="send_to_openai">
+                <button type="submit" class="mdc-button mdc-button--raised">Send to OpenAI</button>
+            </form>
+        {% endif %}
+        {% if openai_response %}
+            <h2>OpenAI Response:</h2>
+            <p>{{ openai_response }}</p>
+        {% endif %}
+    </div>
+    <script>mdc.autoInit()</script>
 </body>
 </html>

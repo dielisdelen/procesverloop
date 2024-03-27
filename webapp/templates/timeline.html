@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Timeline</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Event Timeline</h2>
+        <div class="timeline">
+            {% for event in events %}
+            <div class="card my-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ event.date }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Parties involved: {{ event.parties }}</h6>
+                    <p class="card-text">{{ event.description }}</p>
+                    <p class="card-text"><strong>Actions taken:</strong> {{ event.actions }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <form action="/" method="get">
+            <button type="submit" class="btn btn-primary">Go Back</button>
+        </form> 
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
