@@ -7,27 +7,27 @@
 </head>
 <body>
     <div class="mdc-typography">
-        <h1>Enter Case Number</h1>
+        <h1>Enter ECLI ID</h1> <!-- Updated text -->
         <form action="/timeline" method="get">
             <button type="submit" class="btn btn-primary">View Timeline</button>
         </form>        
         <form method="post">
             <div class="mdc-text-field">
-                <input type="text" id="case_number" name="case_number" class="mdc-text-field__input" placeholder="Enter Case Number" required>
-                <label class="mdc-floating-label" for="case_number"></label>
+                <input type="text" id="ecli_id" name="ecli_id" class="mdc-text-field__input" placeholder="Enter ECLI ID" required> <!-- Updated field -->
+                <label class="mdc-floating-label" for="ecli_id"></label> <!-- Updated label -->
                 <div class="mdc-line-ripple"></div>
             </div>
             <input type="hidden" name="action" value="extract">
             <button type="submit" class="mdc-button mdc-button--raised">Extract Data</button>
         </form>
-        {% if case_number %}
-            <h2>Case Number: {{ case_number }}</h2>
+        {% if ecli_id %} <!-- Updated variable -->
+            <h2>ECLI ID: {{ ecli_id }}</h2> <!-- Updated text -->
         {% endif %}
         {% if extracted_text %}
             <h2>Procesverloop</h2>
             <p>{{ extracted_text }}</p>
             <form method="post">
-                <input type="hidden" name="case_number" value="{{ case_number }}">
+                <input type="hidden" name="ecli_id" value="{{ ecli_id }}"> <!-- Updated field -->
                 <input type="hidden" name="extracted_text" value="{{ extracted_text }}">
                 <input type="hidden" name="action" value="send_to_openai">
                 <button type="submit" class="mdc-button mdc-button--raised">Send to OpenAI</button>
