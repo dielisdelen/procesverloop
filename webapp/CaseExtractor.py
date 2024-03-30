@@ -1,5 +1,5 @@
 from selenium import webdriver
-#from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.service import Service as FirefoxService
 from bs4 import BeautifulSoup
 import time
 
@@ -10,8 +10,11 @@ def scrape_case(ecli_id):
     options = webdriver.FirefoxOptions()
     options.add_argument("-headless")
 
+    service = FirefoxService(executable_path='/usr/local/bin/geckodriver', log_path='procesverloop/geckologs/geckodriver.log')
+
     # Initialize WebDriver for Firefox (make sure it's installed in your environment)
-    driver = webdriver.Firefox(options=options)
+    driver = webdriver.Firefox(service=service, options=options)
+    
 
     # Build the URL with the case number
     url = f"https://uitspraken.rechtspraak.nl/#!/details?id={ecli_id}"
