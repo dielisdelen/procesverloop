@@ -3,12 +3,12 @@ from selenium.webdriver.firefox.options import Options
 from bs4 import BeautifulSoup
 import time
 
-def scrape_case(case_number):
+def scrape_case(ecli_id):
     options = Options()
     options.headless = True  # Enable headless mode
 
     # Build the URL with the case number
-    url = f"https://uitspraken.rechtspraak.nl/#!/details?id={case_number}"
+    url = f"https://uitspraken.rechtspraak.nl/#!/details?id={ecli_id}"
 
     # Initialize WebDriver for Firefox (make sure it's installed in your environment)
     driver = webdriver.Firefox(options=options)

@@ -1,4 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.dialects.postgresql import JSONB
+
 
 db = SQLAlchemy()
 
@@ -11,5 +13,5 @@ class ScrapeRecord(db.Model):
 class OpenAIResponse(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     ecli_id = db.Column(db.String(255), db.ForeignKey('scrape_record.ecli_id'), unique=True)
-    response_data = db.Column(db.JSONB, nullable=False)
+    response_data = db.Column(JSONB, nullable=False)
     response_date = db.Column(db.DateTime, default=db.func.current_timestamp())
