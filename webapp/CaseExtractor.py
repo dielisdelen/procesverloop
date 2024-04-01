@@ -1,19 +1,12 @@
 from selenium import webdriver
-from selenium.webdriver.firefox.service import Service as FirefoxService
 from bs4 import BeautifulSoup
 import time
 
 def scrape_case(ecli_id):
-    #options = Options()
-    #options.headless = True  # Enable headless mode
-
-    options = webdriver.FirefoxOptions()
-    options.add_argument("-headless")
-
-    service = FirefoxService(executable_path='/usr/local/bin/geckodriver', log_path='procesverloop/geckologs/geckodriver.log')
-
-    # Initialize WebDriver for Firefox (make sure it's installed in your environment)
-    driver = webdriver.Firefox(service=service, options=options)
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless')  # Run Chrome in headless mode
+    options.add_argument('--no-sandbox')  # Bypass OS security model, REQUIRED on Linux if running as root
+    options.add_argument('--disable-dev-shm-usage')  # Overcome limited resource problems
     
 
     # Build the URL with the case number
@@ -23,7 +16,7 @@ def scrape_case(ecli_id):
     driver.get(url)
     
     # Wait for the dynamic content to load
-    time.sleep(5)  # Adjust as needed
+    time.sleep(10)  # Adjust as needed
 
     # Get the HTML content after JavaScript execution
     html = driver.page_source
