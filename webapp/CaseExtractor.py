@@ -8,6 +8,7 @@ def scrape_case(ecli_id):
     options.add_argument('--no-sandbox')  # Bypass OS security model, REQUIRED on Linux if running as root
     options.add_argument('--disable-dev-shm-usage')  # Overcome limited resource problems
     
+    driver = webdriver.Chrome(options=options)
 
     # Build the URL with the case number
     url = f"https://uitspraken.rechtspraak.nl/#!/details?id={ecli_id}"
