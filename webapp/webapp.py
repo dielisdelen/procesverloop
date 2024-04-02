@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from CaseExtractor import scrape_case
+from datetime import datetime
 from openai_integration import get_openai_response
 from models import db, ScrapeRecord, OpenAIResponse
 import json
@@ -31,9 +32,30 @@ def index():
                 # Record exists, so directly go to the timeline
                 return redirect(url_for('timeline', ecli_id=ecli_id))
             else:
-                # No record exists, proceed to scrape
-                extracted_text = scrape_case(ecli_id)
-                new_record = ScrapeRecord(ecli_id=ecli_id, raw_text=extracted_text)
+                # No record exists, proceed to scrape and then extract metadata and raw text
+                metadata, extracted_text = scrape_case(ecli_id)  # Ensure scrape_case returns metadata and extracted_text
+                
+                # Parsing and converting dates
+                datum_uitspraak = datetime.strptime(metadata.get('Datum uitspraak', '1900-01-01'), "%d-%m-%Y").date() if 'Datum uitspraak' in metadata else None
+                datum_publicatie = datetime.strptime(metadata.get('Datum publicatie', '1900-01-01'), "%d-%m-%Y").date() if 'Datum publicatie' in metadata else None
+
+                # Create a new record with the extracted information
+                new_record = ScrapeRecord(
+                    ecli_id=ecli_id,
+                    instantie=metadata.get('Instantie', None),
+                    datum_uitspraak=datum_uitspraak,
+                    datum_publicatie=datum_publicatie,
+                    zaaknummer=metadata.get('Zaaknummer', None),
+                    formele_relaties=metadata.get('Formele relaties', None),
+                    rechtsgebieden=metadata.get('Rechtsgebieden', None),
+                    bijzondere_kenmerken=metadata.get('Bijzondere kenmerken', None),
+                    inhoudsindicatie=metadata.get('Inhoudsindicatie', None),
+                    vindplaatsen=metadata.get('Vindplaatsen', None),
+                    metadata_json=metadata,  # Storing the entire metadata as a JSON object
+                    raw_text=extracted_text
+                )
+                
+                # Add the new record to the session and commit it to the database
                 db.session.add(new_record)
                 db.session.commit()
 

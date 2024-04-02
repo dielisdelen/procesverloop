@@ -11,7 +11,7 @@
 <body>
     <div class="mdc-typography">
         <h1>Enter ECLI ID</h1>       
-        <form method="post" onsubmit="return validateECLI() && showModal()">
+        <form method="post">
             <div class="mdc-text-field">
                 <input type="text" id="ecli_id" name="ecli_id" class="mdc-text-field__input" placeholder="Enter ECLI ID" required>
                 <label class="mdc-floating-label" for="ecli_id"></label>
@@ -51,6 +51,7 @@
           <p>Loading, please wait...</p>
           <!-- Optional: Add a spinner or loading animation here -->
         </div>
-      </div>
+    </div>
+    <script src="{{ url_for('static', filename='validation.js') }}"></script>
 </body>
 </html>

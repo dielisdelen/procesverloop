@@ -30,18 +30,21 @@ def scrape_case(ecli_id):
 
     # Locate and extract the required information
     extracted_text = ""
-    procesverloop_div = soup.find('div', class_='section procesverloop')
-    if procesverloop_div:
-        text_blocks = procesverloop_div.find_all('div', class_='parablock')
-        extracted_texts = [block.get_text(strip=True) for block in text_blocks]
-        extracted_text = ' '.join(extracted_texts)
+    main_content_div = soup.find('div', class_='rs-panel rs-panel-type-1')
+    if main_content_div:
+        extracted_text = main_content_div.get_text(separator=' ', strip=True)
     else:
-        # If the primary div is not found, try the secondary div
-        secondary_div = soup.find('div', class_='rs-panel rs-panel-type-1')
-        if secondary_div:
-            extracted_text = secondary_div.get_text(separator=' ', strip=True)
-        else:
-            # Fallback to extracting the entire text or handle as needed
-            extracted_text = "Specific content not found."
+        # Fallback to extracting the entire text or handle as needed
+        extracted_text = "Specific content not found."
 
-    return extracted_text
+    # Dictionary to hold the metadata
+    metadata = {}
+    
+    # Extract metadata from the HTML structure
+    detail_rows = main_content_div.find_all('div', class_='rnl-detail row')
+    for row in detail_rows:
+        key = row.find('label').text.strip()
+        value = row.find('span', class_='rnl-details-value').get_text(strip=True)
+        metadata[key] = value
+
+    return metadata, extracted_text
