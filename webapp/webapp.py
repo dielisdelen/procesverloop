@@ -4,9 +4,12 @@ from CaseExtractor import scrape_case
 from datetime import datetime
 from openai_integration import get_openai_response
 from models import db, ScrapeRecord, OpenAIResponse
+from api.data_api import api_blueprint
+from dotenv import load_dotenv
+
 import json
 import os
-from dotenv import load_dotenv
+
 
 # Load environment variables
 load_dotenv()
@@ -14,6 +17,7 @@ load_dotenv()
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.register_blueprint(api_blueprint, url_prefix='/api')
 
 db.init_app(app)
 
@@ -68,21 +72,8 @@ def index():
 @app.route('/timeline')
 def timeline():
     ecli_id = request.args.get('ecli_id', '')
-    events = []
-
-    response_record = OpenAIResponse.query.filter_by(ecli_id=ecli_id).first()
-    if response_record:
-        try:
-            openai_response = json.loads(response_record.response_data)
-            events = openai_response.get("Events", [])
-        except json.decoder.JSONDecodeError as e:
-            print(f"Error decoding OpenAI response: {str(e)}")
-            events = []
-    else:
-            print("No OpenAI response found for provided ECLI ID.")
-            events = []
-
-    return render_template('timeline.html', events=events, ecli_id=ecli_id)
+    # Now just passing ecli_id to the template, no events
+    return render_template('timeline.html', ecli_id=ecli_id)
 
 if __name__ == '__main__':
     app.run(debug=True)

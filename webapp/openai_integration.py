@@ -22,17 +22,22 @@ def get_openai_response(ecli_id):
     try:
         print(f"Sending to OpenAI: {scrape_record.raw_text[:100]}")
         chat_completion = client.chat.completions.create(
+            model="gpt-3.5-turbo-1106",
             messages = [
                 {
                     "role": "system",
-                    "content": "Je geeft structuur aan tekst en helpt met het destilleren van alle gebeurtenissen met de betrokken personen. Eerst moet je de tekst verdelen in de verschillende gebeurtenissen die elkaar opvolgen. Wanneer je daar klaar mee bent is de volgende stap het simplificeren van de juridische text in een korte, maar professionele samenvattingen die de hoogtepunten accentueren en betrokken partijden benoemd. Voeg alleen extra informatie nodig als het essentieel is voor de context.",
+                    "content": "Als juridisch analist ben je gespecialiseerd in het zorgvuldig doorlichten en samenvatten van complexe juridische documenten, met een bijzondere focus op Nederlandse vonnissen. Jouw primaire taak is het creëren van een gedetailleerde en accurate tijdlijn die het feitenrelaas en het procesverloop helder weergeeft. Het is cruciaal dat elke gebeurtenis strikt in chronologische volgorde wordt gepresenteerd, gebaseerd op de informatie die in het vonnis wordt gegeven.\n\nStart met het extraheren van algemene informatie uit het vonnis voor opname in een JSON-database, en focus vervolgens op het samenstellen van de tijdlijn van gebeurtenissen. Het is essentieel om onderscheid te maken tussen feitelijke gebeurtenissen en juridische overwegingen, waarbij alleen de feiten en het procesverloop worden geanalyseerd.\n\nInstructies:\n- Gebruik ankerevenementen, zoals de datum van de rechtszaak of uitvaardiging van belangrijke documenten, om andere gebeurtenissen chronologisch te ordenen.\n- In geval van onzekerheid over de exacte volgorde van gebeurtenissen, geef dit duidelijk aan in de tijdlijn met een opmerking.\n- Sluit irrelevante informatie of zijdelingse juridische kwesties uit van de analyse.\n\nOutput Structuur:\n   {\n       \"generalInfo\": {\n           \"ECLI\": \"[ECLI nummer]\",\n           \"Court\": \"[Instantie]\",\n           \"url\": \"[link naar uitspraak]\"\n       },\n   }\n   \"timelineEntries\": [\n       {\n           \"date\": \"[DD-MM-YYYY]\",\n           \"party\": \"[partij]\",\n           \"event\": \"[beschrijving van de gebeurtenis]\"\n       },\n       // Voeg meer entries toe zoals nodig\n   ]\n\nLet op de noodzaak van een strikt chronologische volgorde en de helderheid in de beschrijving van elke gebeurtenis. Zorg ervoor dat de informatie volledig en correct is, gezien het belang voor de juridische analyse van de zaak.\n",
                 },
                 {
                     "role": "user",
-                    "content": f"{scrape_record.raw_text} ---> Structureer deze tekst in het volgende stramien: - Datum / periode van de gebeurtenis - Alle betrokken partijen - Alle genomen acties - Eventuele relevante informatie benodigd voor de context (niet verplicht). En kan je deze structureren in een JSON dictionary 'Events' met de variabelen 'date', 'description', 'parties' en 'actions'"
+                    "content": f"{scrape_record.raw_text}"
                 },
             ],
-            model="gpt-3.5-turbo",
+            temperature=0.59,
+            max_tokens=3092,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0,
             response_format={ "type": "json_object" },
         )
 

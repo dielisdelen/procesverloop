@@ -1,28 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Event Timeline</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://use.typekit.net/uln2pyv.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" , initial-scale=1.0">
+    <title>Feitlijn</title>
 </head>
+
 <body>
-    <div class="container mt-5">
-        <h2>Event Timeline</h2>
-        <div class="timeline">
-            {% for event in events %}
-            <div class="card my-3">
-                <div class="card-body">
-                    <h5 class="card-title">{{ event.date }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Parties involved: {{ event.parties }}</h6>
-                    <p class="card-text">{{ event.description }}</p>
-                    <p class="card-text"><strong>Actions taken:</strong> {{ event.actions }}</p>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        <form action="/" method="get">
-            <button type="submit" class="btn btn-primary">Go Back</button>
-        </form> 
+
+    <div id="generalInfo">
+        <p id="ecli"></p>
+        <p id="court"></p>
+        <p id="moreInfo">Bekijk de volledige uitpraak op <span id="urlPlaceholder">rechtspraak.nl</span>.</p>
     </div>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <div class="timelineContainer" id="timelineContainer" data-ecli-id="{{ ecli_id }}">
+        <ul id="eventList">
+
+        </ul>
+    </div>
+
+    <script src="{{ url_for('static', filename='timeline_generator.js') }}"></script>
+
 </body>
+
 </html>
