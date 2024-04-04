@@ -44,10 +44,10 @@ document.addEventListener('DOMContentLoaded', function() {
               const leftContent = document.createElement('div');
               leftContent.className = 'left-content';
               const dateParagraph = document.createElement('p');
-              dateParagraph.className = 'date';
+              dateParagraph.className = 'date_label';
               dateParagraph.textContent = event.date;
               const partyParagraph = document.createElement('p');
-              partyParagraph.className = 'party';
+              partyParagraph.className = 'party_label';
               partyParagraph.textContent = event.party;
               leftContent.appendChild(dateParagraph);
               leftContent.appendChild(partyParagraph);
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
               const rightContent = document.createElement('div');
               rightContent.className = 'right-content';
               const descriptionParagraph = document.createElement('p');
-              descriptionParagraph.className = 'description';
+              descriptionParagraph.className = 'description_text';
               descriptionParagraph.textContent = event.event;
               rightContent.appendChild(descriptionParagraph);
 

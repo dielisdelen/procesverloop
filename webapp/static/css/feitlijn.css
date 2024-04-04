@@ -1,0 +1,744 @@
+.timelineContainer {
+  max-width: 100%;
+  /* Sets a maximum width for the timeline */
+  margin: 0 auto;
+  /* Centers the timeline in the middle of the page */
+
+
+
+}
+
+#eventList {
+  list-style-type: none;
+  position: relative;
+  padding: 0;
+}
+
+#eventList::before {
+  /* Line connecting events */
+  content: '';
+  position: absolute;
+  left: 46px;
+  /* Adjust so the line is in the middle of the circles */
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: var(--blue);
+}
+
+.event-item {
+  padding-left: 100px;
+  padding-bottom: 2rem;
+  /* Provides space for the date, circle, and vertical line */
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  flex-flow: column;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  display: flex;
+
+}
+
+
+
+/* Style for the circle */
+.event-item::before {
+  content: '';
+  position: absolute;
+  left: 40px;
+  /* Aligns with the vertical timeline line */
+
+  /* Adjust based on your layout for vertical alignment */
+  height: 10px;
+  width: 10px;
+  background-color: #fff;
+  /* Circle color - can match the page background or be different */
+  border: 3px solid var(--blue);
+  /* Border color to match the timeline */
+  border-radius: 50%;
+  /* Makes the shape a circle */
+  z-index: 1;
+}
+
+
+
+.entries_list {
+  grid-column-gap: 3rem;
+  grid-row-gap: 3rem;
+  flex-flow: column;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  display: flex;
+}
+
+.date_label {
+  background-color: var(--pink);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  color: var(--blue);
+  border-radius: 999em;
+  padding: .4em 1em;
+  font-size: .81em;
+  display: inline-block;
+}
+
+.party_label {
+  color: var(--blue);
+  padding-left: 10px;
+  font-size: 1em;
+  display: inline-block;
+}
+
+.description_text {
+  color: var(--blue);
+  font-size: .8em;
+  display: inline-block;
+}
+
+.feitlijn_wrapper {
+  background-color: var(--white-smoke);
+  border-radius: 8px;
+  flex-flow: column;
+  margin-top: 4rem;
+  margin-bottom: 10rem;
+  padding: 4rem 3rem;
+  display: flex;
+  box-shadow: 1px 1px 15px 3px rgba(255, 136, 223, .8);
+}
+
+
+
+
+
+
+:root {
+  --black: black;
+  --white-smoke: #f5f5f7;
+  --pink: #f9b0ff;
+  --blue: #0400d8;
+}
+
+body {
+  background-color: var(--black);
+  color: #333;
+  font-family: Manrope, sans-serif;
+  font-size: 1rem;
+  line-height: 1.2em;
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 4.25em;
+  line-height: 1.1em;
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 3.375em;
+  line-height: 1.1em;
+}
+
+h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 2.25em;
+  line-height: 1.2em;
+}
+
+h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1.75em;
+  line-height: 1.2em;
+}
+
+h5 {
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-top: 3em;
+  margin-bottom: 1.1em;
+  font-size: 1.2em;
+  line-height: 1.2em;
+}
+
+h6 {
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1em;
+  line-height: 1.2em;
+}
+
+p {
+  margin-bottom: 10px;
+  line-height: 1.4em;
+}
+
+a {
+  color: #ff75f6;
+  text-decoration: underline;
+}
+
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding-left: 40px;
+}
+
+blockquote {
+  border-left: 5px solid #e2e2e2;
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+figure {
+  margin-bottom: 10px;
+}
+
+.container-w3 {
+  width: 100%;
+  max-width: 58em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.gutter-outside {
+  padding-left: 4em;
+  padding-right: 4em;
+}
+
+.copy-medium {
+  font-size: 1.8em;
+  font-weight: 400;
+  line-height: 1.45em;
+}
+
+.container-w1 {
+  width: 100%;
+  max-width: 95em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.intro-description {
+  padding-top: 2em;
+  padding-left: 4em;
+  padding-right: 4em;
+}
+
+.title1 {
+  font-size: 10em;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.title-highlight {
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  background-color: rgba(252, 246, 243, .15);
+  border-radius: 999em;
+  padding: .7em 1.4em .8em;
+  font-size: 1.5em;
+  display: inline-block;
+}
+
+.hero_wrapper {
+  z-index: 1;
+  grid-column-gap: 2.8rem;
+  grid-row-gap: 2.8rem;
+  color: var(--white-smoke);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.title-highlight-wrapper {
+  margin-bottom: 3em;
+  font-size: .7em;
+}
+
+.wrapper {
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.ultra-gradient-wrapper {
+  background-color: #100f68;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  font-size: 1vw;
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  overflow: hidden;
+}
+
+.main-shapes-wrapper {
+  filter: blur(120px);
+}
+
+.blending-group-wrapper {
+  z-index: 1;
+  filter: blur(120px);
+  mix-blend-mode: overlay;
+}
+
+.shape-1 {
+  background-color: var(--pink);
+  border-radius: 999em;
+  width: 40em;
+  height: 40em;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  top: -24.7em;
+  left: 0;
+  right: 0;
+}
+
+.shape-2 {
+  background-color: #2600ff;
+  border-radius: 999em;
+  width: 43em;
+  height: 40em;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  top: -20em;
+  left: -27.4em;
+  right: 0;
+}
+
+.shape-3 {
+  background-color: #564eff;
+  border-radius: 999em;
+  width: 53em;
+  height: 100em;
+  position: absolute;
+  top: -19.8em;
+  left: -26em;
+  right: 0;
+  transform: rotate(-28deg);
+}
+
+.shape-4 {
+  background-color: #f6c779;
+  border-radius: 999em;
+  width: 65em;
+  height: 40em;
+  margin-left: auto;
+  position: absolute;
+  top: -11.3em;
+  left: 0;
+  transform: rotate(40deg);
+}
+
+.shape-5 {
+  background-color: #e7805b;
+  border-radius: 999em;
+  width: 30em;
+  height: 30em;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  top: -21.7em;
+  left: 0;
+  right: 0;
+}
+
+.shape-6 {
+  background-color: #a0bce0;
+  border-radius: 999em;
+  width: 66em;
+  height: 60em;
+  margin-left: auto;
+  position: absolute;
+  top: -14.2em;
+  right: -25em;
+  transform: rotate(60deg);
+}
+
+.shape-7 {
+  background-color: #b5a3d6;
+  border-radius: 999em;
+  width: 20em;
+  height: 13em;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  top: -4.1em;
+  left: 0;
+  right: -23.9em;
+  transform: rotate(40deg);
+}
+
+.shape-8 {
+  background-color: #9fc68e;
+  border-radius: 999em;
+  width: 47em;
+  height: 119em;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  top: -17.1em;
+  left: 26.7em;
+  right: 0;
+  transform: rotate(29deg);
+}
+
+.shape-9 {
+  background-color: #0400d8;
+  border-radius: 999em;
+  width: 30em;
+  height: 119em;
+  position: absolute;
+  top: -5.3em;
+  right: 1.2em;
+  transform: rotate(39deg);
+}
+
+.background-noise {
+  z-index: 0;
+  opacity: .3;
+  background-image: url('../images/noise.png');
+  background-position: 0 0;
+  background-size: auto;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+}
+
+
+.div-block-3 {
+  border: 3px solid var(--blue);
+  background-color: var(--pink);
+  border-radius: 50%;
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.div-block-4 {
+  padding-top: 1rem;
+}
+
+.feitlijn_entries_wrapper {
+  flex-flow: row;
+  display: flex;
+  width: 40rem;
+}
+
+.feitlijn_header_text {
+  color: var(--blue);
+  margin-top: 2rem;
+  font-size: 1.6em;
+  display: inline-block;
+}
+
+.feitlijn_header_wrapper {
+  grid-column-gap: 2.3rem;
+  grid-row-gap: 2.3rem;
+  flex-flow: column;
+  align-items: center;
+  padding-bottom: 2rem;
+  display: flex;
+}
+
+.feitlijn_footer_text {
+  color: var(--blue);
+  font-size: 2em;
+  display: inline-block;
+}
+
+.entry_wrapper {
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  flex-flow: column;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  display: flex;
+}
+
+.entry_wrapper_desc {
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  flex-flow: column;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-columns: 1fr;
+  align-items: flex-start;
+  display: flex;
+}
+
+.feitlijn_logo {
+  width: 3rem;
+  height: 3rem;
+}
+
+.feitlijn_meta_data_text {
+  color: var(--blue);
+  font-size: .8em;
+  display: inline-block;
+}
+
+.space_between {
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  display: flex;
+}
+
+.div-block-6 {
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  display: flex;
+}
+
+.form {
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  height: 5rem;
+  display: flex;
+}
+
+.ecli_field {
+  color: var(--blue);
+  border-radius: 10px;
+  height: 100%;
+  margin-bottom: 0;
+  font-size: 2.1rem;
+}
+
+.ecli_field::placeholder {
+  color: rgba(85, 0, 255, .4);
+  font-size: 2.1rem;
+}
+
+.submit-button {
+  background-color: var(--pink);
+  color: var(--blue);
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.ecli_link {
+  color: var(--pink);
+  font-weight: 600;
+}
+
+.hero_logo_small {
+  width: 5rem;
+  display: inline-block;
+}
+
+.nav-wrapper {
+  z-index: 1;
+  grid-column-gap: 2.8rem;
+  grid-row-gap: 2.8rem;
+  color: var(--white-smoke);
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 90%;
+  max-width: 90rem;
+  margin-top: 3rem;
+  display: flex;
+}
+
+.copy_button {
+  justify-content: space-between;
+  align-items: stretch;
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1.45em;
+  display: flex;
+}
+
+.container {
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+  display: flex;
+}
+
+.nav_button {
+  color: var(--white-smoke);
+  text-decoration: none;
+}
+
+.nav_button:hover {
+  color: var(--pink);
+}
+
+@media screen and (max-width: 991px) {
+  body {
+    background-color: var(--black);
+    color: var(--white-smoke);
+    font-size: .87rem;
+  }
+
+  .gutter-outside {
+    padding-left: 6vw;
+    padding-right: 6vw;
+  }
+
+  .ultra-gradient-wrapper {
+    font-size: 1.3vh;
+  }
+
+  .blending-group-wrapper {
+    margin-left: -4em;
+  }
+
+  .shape-3 {
+    width: 44em;
+    height: 57em;
+    position: absolute;
+    top: 23.2em;
+    bottom: 0;
+    left: auto;
+    right: -9.5em;
+  }
+
+  .shape-4 {
+    top: 22em;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  body {
+    font-size: .75rem;
+  }
+
+  h1 {
+    font-size: 3.2em;
+  }
+
+  h2 {
+    font-size: 2.7em;
+  }
+
+  h3 {
+    font-size: 2em;
+  }
+
+  h4 {
+    font-size: 1.5em;
+  }
+
+  h5 {
+    font-size: 1.1em;
+  }
+
+  h6 {
+    font-size: .9em;
+  }
+
+  .copy-medium {
+    font-size: 1.3em;
+    line-height: 1.4em;
+  }
+
+  .intro-description {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .title1 {
+    font-size: 5em;
+  }
+
+  .main-shapes-wrapper,
+  .blending-group-wrapper {
+    filter: blur(80px);
+  }
+
+  .shape-3 {
+    width: 30em;
+    height: 100em;
+  }
+
+  .copy_button {
+    font-size: 1.3em;
+    line-height: 1.4em;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .shape-4 {
+    top: 30.7em;
+  }
+}
+
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('/static/fonts/Manrope-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('/static/fonts/Manrope-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('/static/fonts/Manrope-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('/static/fonts/Manrope-Bold.ttf') format('truetype'), url('../fonts/Manrope-ExtraBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('/static/fonts/Manrope-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('/static/fonts/Manrope-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
