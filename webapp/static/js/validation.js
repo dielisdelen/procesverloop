@@ -14,7 +14,7 @@ function validateECLI() {
 // Ensure the event listener is correctly attached to the form with the specific id or class
 document.addEventListener('DOMContentLoaded', function() {
     // Adjust the querySelector to target the form by its class or id if needed
-    var form = document.querySelector('#email-form'); // Assuming 'email-form' is unique
+    var form = document.querySelector('#ecli_form'); // Assuming 'email-form' is unique
     if(form) {
         form.addEventListener('submit', function(event) {
             if (!validateECLI()) {

@@ -77,7 +77,7 @@
       <div class="container-w3 gutter-outside">
         <div class="form_wrapper">
           <div class="form_wrapper_with_button w-form">
-            <form id="ecli_id" name="ecli_id" data-name="Email Form" method="post" action="/" class="form" type="text" required>
+            <form id="ecli_form" name="ecli_id" data-name="Email Form" method="post" action="/" class="form" type="text" required>
               <!-- Ensure the input name matches what your Flask app expects -->
               <input class="ecli_field w-input" maxlength="256" name="ecli_id" data-name="ECLI ID" placeholder="ECLI123455678" type="text" id="ecli_id">
               <!-- Hidden input field to indicate the action -->
@@ -127,6 +127,7 @@
         <!-- Optional: Add a spinner or loading animation here -->
       </div>
   </div>
+  <script src="{{ url_for('static', filename='js/validation.js') }}"></script>
 </body>
 
 </html>
