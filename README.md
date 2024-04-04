@@ -7,22 +7,27 @@ Webapplication for sending ECLI's to ChatGPT to get a short but precise summary 
 - Python 3.8+
 - Virtualenv
 
+For python use: brew install python
+For vitualenv use: pip install virtualenv
+
 ## Setup
-1. Clone the repository and navigate into it:
+1. Navigate to directory where you want to clone the repository
+
+2. Clone the repository and navigate into it:
 
 git clone https://github.com/dielisdelen/procesverloop.git
 cd procesverloop
 
-2. Set up a virtual environment and activate it:
+3. Set up a virtual environment and activate it:
 
 python3 -m venv venv
 source venv/bin/activate
 
-3. Install dependencies:
+4. Install dependencies:
 
 pip install -r requirements.txt
 
-4. Run the application:
+5. Run the application:
 
 export FLASK_APP=app.py
 export FLASK_ENV=development
