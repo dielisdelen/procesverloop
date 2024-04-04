@@ -4,7 +4,7 @@ function validateECLI() {
     var ecliInput = document.getElementById('ecli_id').value; 
     var ecliPattern = /^ECLI:\w{2}:\w{2,6}:\d{4}:\w+$/; // Simplified pattern, adjust as needed
     if (!ecliPattern.test(ecliInput)) {
-        alert("Please enter a valid ECLI ID.");
+        alert("Vul een geldige ECLI code in.");
         return false; // Prevent form submission
     }
     console.log("ECLI validated")
