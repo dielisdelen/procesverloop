@@ -227,6 +227,14 @@ figure {
   padding-right: 4em;
 }
 
+#zoekveld {
+  display: block;
+}
+
+#loader {
+  display: none;
+}
+
 .copy-medium {
   font-size: 1.8em;
   font-weight: 400;
@@ -245,9 +253,8 @@ figure {
 }
 
 .intro-description {
-  padding-top: 2em;
-  padding-left: 4em;
-  padding-right: 4em;
+
+  padding-bottom: 2em;
 }
 
 .title1 {
@@ -650,6 +657,20 @@ figure {
   display: block;
 }
 
+.loader_wrapper {
+  z-index: 1;
+  grid-column-gap: 2.8rem;
+  grid-row-gap: 2.8rem;
+  color: var(--white-smoke);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+  display: block;
+}
+
+
 .footer {
   display: flex;
   justify-content: center;
@@ -828,9 +849,9 @@ figure {
 
 
   .img_footer {
-    width: 4rem;
-  }
-  
+  width: 4rem;
+}
+
   .intro-description {
     padding-left: 0;
     padding-right: 0;

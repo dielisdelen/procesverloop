@@ -64,14 +64,15 @@
           </div><img src="{{ url_for('static', filename='images/feitlijn_logo_big.svg') }}" loading="lazy" alt="" class="hero_logo_big">
         </div>
       </div>
-      <div class="container-w3 gutter-outside">
-        <div class="text-center">
-          <div class="intro-description">
-            <p class="copy-medium">Vul een ECLI nummer in en maak een tijdlijn van de belangrijkste feiten uit een vonnis of arrest.</p>
+   
+      <div class="container-w3 gutter-outside" id="zoekveld">
+        <div class="container-w3 gutter-outside">
+          <div class="text-center">
+            <div class="intro-description">
+              <p class="copy-medium">Vul een ECLI nummer in en maak een tijdlijn van de belangrijkste feiten uit een vonnis of arrest.</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="container-w3 gutter-outside">
         <div class="form_wrapper">
           <div class="form_wrapper_with_button w-form">
             <form id="ecli_form" name="ecli_id" data-name="Email Form" method="post" action="/" class="form" type="text" required>
@@ -79,7 +80,7 @@
               <input class="ecli_field w-input" maxlength="256" name="ecli_id" data-name="ECLI ID" placeholder="ECLI123455678" type="text" id="ecli_id">
               <!-- Hidden input field to indicate the action -->
               <input type="hidden" name="action" value="extract">
-              <input type="submit" data-wait="Please wait..." class="submit-button w-button" value="Geef me de feiten">
+              <input type="submit" id="ecli_button" class="submit-button w-button" value="Geef me de feiten">
             </form>
             <div class="w-form-done">
               <div>Thank you! Your submission has been received!</div>
@@ -96,6 +97,22 @@
         </div>
       </div>
     </div>
+
+
+    
+
+    <div class="loader_wrapper" id="loader">
+    
+      <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+
+    <dotlottie-player src="https://lottie.host/cdb47ecd-ddad-4f18-ab6e-2cd751b4db61/76J9YhiXFr.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+    </div>
+
+
+
+
+
+    
     <div class="footer_wrapper">
       <div class="footer">
         <div class="div-block-8-copy">

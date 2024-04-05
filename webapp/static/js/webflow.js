@@ -9,6 +9,18 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+// Listen for a click event on the element with the ID 'ecli_button'
+document.getElementById('ecli_button').addEventListener('click', function() {
+  // When the button is clicked, find the element with the ID 'zoekveld'
+  // and set its display property to 'none' to hide it
+  document.getElementById('zoekveld').style.display = 'none';
+  
+  // Then, find the element with the ID 'loader'
+  // and set its display property to 'block' to show it
+  document.getElementById('loader').style.display = 'block';
+});
+
+
 
 /*!
  * Webflow: Front-end site library
