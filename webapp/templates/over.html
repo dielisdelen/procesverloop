@@ -14,6 +14,8 @@
   <link href="{{ url_for('static', filename='css/feitlijn.css') }}" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
   <script type="text/javascript">WebFont.load({ google: { families: ["DM Sans:regular,800"] } });</script>
   <script
@@ -34,9 +36,7 @@
         <a href="#" class="nav_button w-inline-block">
           <p class="copy_button">Over de makers</p>
         </a>
-        <a href="#" class="nav_button w-inline-block">
-          <p class="copy_button">Contact</p>
-        </a>
+      
       </div>
     </div>
     <div data-w-id="99347973-a9c4-2f41-4aea-38c753f3f610" class="ultra-gradient-wrapper">
@@ -57,32 +57,36 @@
       </div>
       <div class="background-noise"></div>
     </div>
-    <div class="hero_wrapper">
-      <div class="container-w3 gutter-outside">
-        <div class="feitlijn_wrapper">
-          <div class="feitlijn_header_wrapper">
-            <div class="space_between">
-              <div id="court" class="feitlijn_meta_data_text">Rechtbank Maastricht</div>
-              <div id="ecli" class="feitlijn_meta_data_text">ECLI:ABC:12345678</div>
-            </div><img src="{{ url_for('static', filename='images/feitlijn_small.svg') }}" loading="lazy" alt="" class="feitlijn_logo">
-          </div>
-          <div class="feitlijn_entries_wrapper" id="timelineContainer" data-ecli-id="{{ ecli_id }}">
+  
 
-            <ul id="eventList">
-
-            </ul>
+    <div class="hero_wrapper"><div class="container-w1 gutter-outside"><div class="text-center"><div class="title-highlight-wrapper"><div class="title-highlight">Legal AI&nbsp;Tool</div></div><img src="https://assets-global.website-files.com/660c42b6611eedc1b7303e14/660d1e417df24501dd9c5d65_feitlijn_logo_big.svg" loading="lazy" alt="" class="hero_logo_big"></div></div><div class="container-w3 gutter-outside"><div class="text-center"><div class="intro-description"><p class="copy-medium">Feitlijn is gemaakt door de mensen van Patroon, een legal design agency in Amsterdam. Wij maken juridische complexiteit toegankelijk met slimme technologie en goed ontwerp. </p></div></div></div></div>
+<div class="faq_wrapper"><div class="container-w3 gutter-outside"><div class="accordion-wrapper"><div class="accordion-item"><div id="q1" class="accordion-item-trigger"><h4 class="accordion-heading"><strong>Voor wie is feitlijn gemaakt?</strong></h4></div><div class="accordion-item-content"><p>Feitlijn is gemaakt voor iedereen die wel eens jurisprudentieonderzoek doet. Vooral studenten en advocaten dus. </p></div></div><div class="accordion-item"><div id="q1" class="accordion-item-trigger"><h4 class="accordion-heading"><strong>Wat kan ik ermee?</strong></h4></div><div class="accordion-item-content"><p>Feitlijn maakt een tijdlijn van de belangrijkste gebeurtenissen die tot de uitspraak hebben geleid. Het helpt je om in korte tijd te zien waar de zaak in grote lijnen over gaat. Het is dus geen vervanging van een grondige analyse van jurisprudentie. </p></div></div><div class="accordion-item"><div id="q1" class="accordion-item-trigger"><h4 class="accordion-heading"><strong>Wat is ECLI?</strong></h4></div><div class="accordion-item-content"><p>ECLI staat voor "European Case Law Identifier," een gestandaardiseerde codereeks die wordt gebruikt om Europese rechtspraak uniek te identificeren.<br><br>Een ECLI-code bestaat uit vijf delen: de code "ECLI", een code voor het land van herkomst, het jaar van de uitspraak, de code van de rechtbank die de uitspraak heeft gedaan, en een uniek nummer voor de zaak. </p></div></div><div class="accordion-item"><div id="q1" class="accordion-item-trigger"><h4 class="accordion-heading"><strong>Welke uitspraken kan ik invullen?</strong></h4></div><div class="accordion-item-content"><p>Op dit moment kan Feitlijn alleen nog Nederlandse uitspraken begrijpen die op rechtspraak.nl zijn gepubliceerd. We werken achter de schermen hard aan een internationale versie. Wil je een seintje als het zover is? Laat je e-mailadres achter. </p></div></div><div class="accordion-item"><div id="q1" class="accordion-item-trigger"><h4 class="accordion-heading"><strong>Hoe werkt het?</strong></h4></div><div class="accordion-item-content"><p>Feitlijn zoekt met het ECLI nummer de tekst van de uitspraak. Die tekst wordt doorgestuurd naar OpenAI. Op basis van een aantal prompts destilleert OpenAI de belangrijkste gebeurtenissen, en zet die netjes in een tabelletje. Dat tabelletje zetten wij vervolgens weer om in een visuele tijdlijn. </p></div></div><div class="accordion-item"><div id="q1" class="accordion-item-trigger"><h4 class="accordion-heading"><strong>Waarom hebben jullie Feitlijn gemaakt</strong></h4></div><div class="accordion-item-content"><p>Onze missie is om het recht toegankelijker te maken. Dan doen we door de wetten van goed ontwerp met technische innovatie te combineren. </p></div></div></div></div></div>
 
 
+<div class="footer_wrapper">
+  <div class="footer">
+    <div class="div-block-8-copy">
 
-          </div>
-          <div class="feitlijn_footer_wrapper">
-            <div class="feitlijn_meta_data_text">
-              <p id="moreInfo">Bekijk de volledige uitpraak op <span id="urlPlaceholder">rechtspraak.nl</span>.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <a href="http://feitlijn.nl" class="footer_logo_link_wrapper"><img src="{{ url_for('static', filename='images/feitlijn_logo_big.svg') }}" loading="lazy" alt="" class="img_footer"></a>
+      
+
+      <div class="copy_footer">Feitlijn is gemaakt door de mensen van Patroon, een legal design agency in Amsterdam. Wij maken juridische complexiteit toegankelijk met slimme technologie en goed ontwerp.</div>
+      <a href="http://patroon.nl" class="w-inline-block">
+        <div class="logo_patroon w-embed"><svg viewbox="0 0 146 31" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 30.2618H4.24149V22.9598C4.24149 22.2071 4.16575 20.2875 4.12788 19.0454H4.16575C4.96103 21.4543 7.38474 23.1104 11.096 23.1104C16.4737 23.1104 19.882 19.1959 19.882 13.1737C19.882 7.56546 16.5115 3.91446 11.1718 3.91446C7.46048 3.91446 4.96103 5.72114 4.20362 8.54407H4.16575L4.24149 4.21558H0V30.2618ZM10.2629 19.6476C6.62733 19.6476 4.24149 17.6151 4.24149 14.4534V13.4748C4.31723 9.74853 6.6652 7.37726 10.1872 7.37726C13.5576 7.37726 15.6405 9.71089 15.6405 13.2866C15.6405 17.1634 13.5198 19.6476 10.2629 19.6476Z" fill="currentColor"></path>
+            <path d="M29.1833 23.1104C33.3112 23.1104 35.5456 21.4543 36.1515 18.7066H36.1894C36.1894 20.2122 36.0758 21.906 36 22.8093H40.2415V11.4799C40.2415 6.58684 36.9089 3.91446 31.2283 3.91446C25.8886 3.91446 22.6317 6.13517 22.6317 9.86144C22.6317 10.2002 22.6696 10.6895 22.7075 10.953H26.6081C26.5703 10.6519 26.5703 10.3507 26.5703 10.2378C26.5703 8.16768 28.1987 7.07615 31.0769 7.07615C34.3716 7.07615 36 8.31824 36 11.1035V12.4209H29.0697C24.0708 12.4209 22.0637 14.6416 22.0637 17.4645C22.0637 21.0779 24.904 23.1104 29.1833 23.1104ZM30.0544 19.9487C27.4792 19.9487 25.9644 18.9701 25.9644 17.2763C25.9644 15.8084 27.0247 14.9804 29.4484 14.9804H36V15.3191C36 18.1797 33.7278 19.9487 30.0544 19.9487Z" fill="currentColor"></path>
+            <path d="M52.6343 23.0351C54.187 23.0351 55.4746 22.7717 56.0427 22.5835V19.2336C55.5125 19.3841 54.3006 19.5723 53.2403 19.5723C50.6651 19.5723 49.7562 18.3679 49.7562 15.959V7.64074H56.1942V4.21558H49.7562V0H46.2342L46.0449 2.78529C45.9313 3.83919 45.6662 4.21558 44.9466 4.21558H42.5608V7.64074H45.5147V16.1848C45.5147 20.2875 47.5218 23.0351 52.6343 23.0351Z" fill="currentColor"></path>
+            <path d="M59.5768 22.8093H63.8182V14.6792C63.8182 10.2378 65.8254 7.52782 69.0444 7.52782C71.5438 7.52782 72.7557 8.99574 72.7557 12.1198C72.7557 12.9855 72.6799 13.9265 72.6042 14.6416H76.467C76.5427 13.8512 76.6563 12.3456 76.6563 11.1788C76.6563 6.5492 74.422 3.91446 70.3698 3.91446C66.5071 3.91446 64.5757 6.21045 63.7046 9.56033H63.6668L63.8182 4.21558H59.5768V22.8093Z" fill="currentColor"></path>
+            <path d="M89.4897 23.1104C95.4732 23.1104 99.2982 19.4594 99.2982 13.5501C99.2982 7.6031 95.4732 3.91446 89.4897 3.91446C83.544 3.91446 79.7191 7.6031 79.7191 13.5501C79.7191 19.4594 83.544 23.1104 89.4897 23.1104ZM89.4897 19.6476C86.0435 19.6476 83.9606 17.314 83.9606 13.5501C83.9606 9.74853 86.0435 7.37726 89.4897 7.37726C92.9359 7.37726 95.0567 9.74853 95.0567 13.5501C95.0567 17.314 92.9359 19.6476 89.4897 19.6476Z" fill="currentColor"></path>
+            <path d="M112.123 23.1104C118.107 23.1104 121.932 19.4594 121.932 13.5501C121.932 7.6031 118.107 3.91446 112.123 3.91446C106.178 3.91446 102.353 7.6031 102.353 13.5501C102.353 19.4594 106.178 23.1104 112.123 23.1104ZM112.123 19.6476C108.677 19.6476 106.594 17.314 106.594 13.5501C106.594 9.74853 108.677 7.37726 112.123 7.37726C115.569 7.37726 117.69 9.74853 117.69 13.5501C117.69 17.314 115.569 19.6476 112.123 19.6476Z" fill="currentColor"></path>
+            <path d="M125.554 22.8093H129.796V13.8135C129.796 9.74853 132.144 7.52782 135.855 7.52782C139.225 7.52782 140.892 9.18394 140.892 12.1198V22.8093H145.133V11.1788C145.133 6.58684 142.217 3.91446 137.483 3.91446C133.128 3.91446 130.705 5.83406 129.682 9.18394H129.644L129.796 4.21558H125.554V22.8093Z" fill="currentColor"></path>
+          </svg></div>
+      </a>
+      <div class="copy_footer">© 2024 Patroon Legal Design B.V. <br>Gedempt Hamerkanaal 173, 1021 KP, Amsterdam</div>
     </div>
+  </div>
+</div>
+
     <div class="gradient-animation-custom-css w-embed">
       <style>
         .gradient-animation-shape {

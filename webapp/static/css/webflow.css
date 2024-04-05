@@ -24,6 +24,21 @@
 .w-icon-slider-left:before {
   content: "\e601";
 }
+.link-block {
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  margin-bottom: 20px;
+  transition: all .2s;
+  display: flex;
+  transform: translate(0);
+}
+
+.link-block:hover {
+  transform: scale(1.4);
+}
+
+
 .w-icon-nav-menu:before {
   content: "\e602";
 }
@@ -799,6 +814,8 @@ textarea.w-select {
   border: #758696 solid 1px;
   border-radius: 3px;
 }
+
+
 .w-widget-twitter-count-shim * {
   pointer-events: none;
   -webkit-user-select: none;
@@ -806,6 +823,34 @@ textarea.w-select {
   -ms-user-select: none;
   user-select: none;
 }
+
+.copy_footer {
+  line-height: 1.5em;
+  font-size: .9rem;
+  text-align: center;
+  
+}
+
+.footer_logo_link_wrapper {
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  margin-bottom: 20px;
+  transition: all .2s;
+  display: flex;
+  transform: translate(0);
+}
+
+.div-block-8-copy {
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  display: flex;
+}
+
 .w-widget-twitter-count-shim .w-widget-twitter-count-inner {
   position: relative;
   font-size: 15px;
