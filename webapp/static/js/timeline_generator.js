@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Display general information
             document.getElementById('ecli').textContent = `ECLI: ${openaiData.generalInfo.ECLI}`;
-            document.getElementById('court').textContent = `Court: ${data.instantie}`;
+            document.getElementById('court').textContent = `${data.instantie}`;
 
             // Find the placeholder where the URL should be inserted
             const urlPlaceholder = document.getElementById('urlPlaceholder');
@@ -40,24 +40,24 @@ document.addEventListener('DOMContentLoaded', function() {
               const eventItem = document.createElement('li');
               eventItem.className = 'event-item';
 
-              // Create and fill the left content with date and party
+              // Create and fill the left content with date
               const leftContent = document.createElement('div');
               leftContent.className = 'left-content';
               const dateParagraph = document.createElement('p');
               dateParagraph.className = 'date_label';
               dateParagraph.textContent = event.date;
+              leftContent.appendChild(dateParagraph);
+
+              // Create and fill the right content with the party and description
+              const rightContent = document.createElement('div');
+              rightContent.className = 'right-content';
               const partyParagraph = document.createElement('p');
               partyParagraph.className = 'party_label';
               partyParagraph.textContent = event.party;
-              leftContent.appendChild(dateParagraph);
-              leftContent.appendChild(partyParagraph);
-
-              // Create and fill the right content with the description
-              const rightContent = document.createElement('div');
-              rightContent.className = 'right-content';
               const descriptionParagraph = document.createElement('p');
               descriptionParagraph.className = 'description_text';
               descriptionParagraph.textContent = event.event;
+              rightContent.appendChild(partyParagraph);
               rightContent.appendChild(descriptionParagraph);
 
               // Assemble the event item

@@ -75,5 +75,9 @@ def timeline():
     # Now just passing ecli_id to the template, no events
     return render_template('timeline.html', ecli_id=ecli_id)
 
+@app.route('/over')
+def new_page():
+    return render_template('over.html')
+
 if __name__ == '__main__':
     app.run(debug=True)

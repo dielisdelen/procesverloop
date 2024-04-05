@@ -4,6 +4,49 @@ body {
     font-style: normal;
 }
 
+
+.accordion-wrapper {
+    margin-top: 50px;
+  }
+  
+  .accordion-item {
+    background-color: var(--glass);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 24px 30px 14px;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, .03);
+  }
+  
+  .accordion-item-trigger {
+    justify-content: space-between;
+    align-items: flex-start;
+    display: flex;
+  }
+  
+  .accordion-heading {
+    cursor: pointer;
+    flex: 1;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1em;
+    line-height: 30px;
+  }
+  
+  .icon.accordion-icon {
+    color: rgba(0, 0, 0, .6);
+    cursor: pointer;
+    font-size: 32px;
+    line-height: 30px;
+  }
+  
+  .accordion-item-content {
+    margin-top: 10px;
+    margin-right: 30px;
+    overflow: hidden;
+  }
+  
+
+
 .timelineContainer {
     max-width: 100%;
     /* Sets a maximum width for the timeline */
