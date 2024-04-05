@@ -17,7 +17,7 @@ def scrape_case(ecli_id):
     driver.get(url)
     
     # Wait for the dynamic content to load
-    time.sleep(10)  # Adjust as needed
+    time.sleep(6)  # Adjust as needed
 
     # Get the HTML content after JavaScript execution
     html = driver.page_source
