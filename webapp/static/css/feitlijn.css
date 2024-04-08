@@ -1,3 +1,11 @@
+
+.feitlijn_wrapper a {
+  color: var(--blue);
+  text-decoration: underline; /* Adds underline to the links */
+}
+
+
+
 .timelineContainer {
   max-width: 100%;
   /* Sets a maximum width for the timeline */
@@ -518,6 +526,12 @@ figure {
   display: flex;
 }
 
+
+#ecli_button:hover {
+  background-color: #bf65e5; /* Blue background on hover */
+  color: #2f1979; /* White text on hover (optional) */
+}
+
 .feitlijn_footer_text {
   color: var(--blue);
   font-size: 2em;
@@ -614,7 +628,7 @@ figure {
   flex-flow: row;
   justify-content: space-between;
   align-items: flex-start;
-  width: 100%;
+  width: 90%;
   max-width: 90rem;
   margin-top: 3rem;
   display: flex;
@@ -704,6 +718,18 @@ figure {
   flex-flow: column;
   display: flex;
 }
+
+
+.div-block-8-copy {
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  display: flex;
+}
+
 
 .logo_patroon {
   width: 8rem;
@@ -894,9 +920,34 @@ figure {
     display: grid;
   }
 
+  .div-block-8-copy {
+    grid-column-gap: 16px;
+    grid-row-gap: 16px;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    display: flex;
+  }
+
+
   .accordion-item-content {
     margin-right: 0;
   }
+
+  .form {
+    margin-right: 0;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+
+  #ecli_button {
+    height: 4em;
+    font-size: 16px;
+  }
+
+
 }
 
 @media screen and (max-width: 479px) {
@@ -918,6 +969,7 @@ figure {
     grid-column-gap: 5px;
     grid-row-gap: 5px;
   }
+
 
   .div-block-9 {
     grid-column-gap: 2rem;

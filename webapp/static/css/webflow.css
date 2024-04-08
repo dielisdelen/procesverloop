@@ -668,6 +668,9 @@ textarea.w-select {
   }
 }
 @media screen and (max-width: 767px) {
+
+
+
   .w-hidden-main {
     display: inherit !important;
   }
@@ -841,15 +844,6 @@ textarea.w-select {
   transform: translate(0);
 }
 
-.div-block-8-copy {
-  grid-column-gap: 16px;
-  grid-row-gap: 16px;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  width: 70%;
-  display: flex;
-}
 
 .w-widget-twitter-count-shim .w-widget-twitter-count-inner {
   position: relative;
