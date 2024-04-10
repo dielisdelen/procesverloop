@@ -6,6 +6,9 @@ from openai_integration import get_openai_response
 from models import db, ScrapeRecord, OpenAIResponse
 from api.data_api import api_blueprint
 from dotenv import load_dotenv
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+from redis import Redis
 
 import json
 import os
@@ -21,10 +24,22 @@ app.register_blueprint(api_blueprint, url_prefix='/api')
 
 db.init_app(app)
 
+# Redis and Limiter commands
+redis = Redis(host='pvredis-a42qr8.serverless.eun1.cache.amazonaws.com', port=6379, db=0, decode_responses=True, ssl=True)
+
+limiter = Limiter(
+    app=app,
+    key_func=get_remote_address,  # Use the remote address for rate limiting
+    storage_uri="rediss://pvredis-a42qr8.serverless.eun1.cache.amazonaws.com:6379",
+    default_limits=["50 per hour", "5 per minute"]  # Set sensible defaults
+)
+
+
 with app.app_context():
     db.create_all()
 
 @app.route('/', methods=['GET', 'POST'])
+@limiter.limit("5 per minute")
 def index():
     if request.method == 'POST':
         action = request.form.get('action')
@@ -66,6 +81,8 @@ def index():
                 # After storing the scraped data, process it with OpenAI
                 get_openai_response(ecli_id)
                 return redirect(url_for('timeline', ecli_id=ecli_id))
+
+        pass
 
     return render_template('index.html')
 
