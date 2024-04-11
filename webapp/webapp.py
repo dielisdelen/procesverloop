@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, make_response
 from flask_sqlalchemy import SQLAlchemy
 from CaseExtractor import scrape_case
 from datetime import datetime
@@ -6,13 +6,18 @@ from openai_integration import get_openai_response
 from models import db, ScrapeRecord, OpenAIResponse
 from api.data_api import api_blueprint
 from dotenv import load_dotenv
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+from redis import Redis
 
 import json
 import os
 
-
 # Load environment variables
 load_dotenv()
+
+# Check if Redis Limiter is enabled
+USE_REDIS_LIMITER = os.getenv('USE_REDIS_LIMITER', 'false').lower() == 'true'
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')
@@ -21,10 +26,34 @@ app.register_blueprint(api_blueprint, url_prefix='/api')
 
 db.init_app(app)
 
+if USE_REDIS_LIMITER:
+    from redis import Redis
+    from flask_limiter import Limiter
+    from flask_limiter.util import get_remote_address
+    
+    redis = Redis(host='pvredis-a42qr8.serverless.eun1.cache.amazonaws.com', port=6379, db=0, decode_responses=True, ssl=True)
+
+    limiter = Limiter(
+        app=app,
+        key_func=get_remote_address,  # Use the remote address for rate limiting
+        storage_uri="rediss://pvredis-a42qr8.serverless.eun1.cache.amazonaws.com:6379",
+        default_limits=["50 per hour", "5 per minute"]  # Set sensible defaults
+    )
+else:
+    # Define a dummy limiter decorator that does nothing
+    class DummyLimiter:
+        def limit(self, *args, **kwargs):
+            def decorator(f):
+                return f
+            return decorator
+
+    limiter = DummyLimiter()
+
 with app.app_context():
     db.create_all()
 
 @app.route('/', methods=['GET', 'POST'])
+@limiter.limit("5 per minute")
 def index():
     if request.method == 'POST':
         action = request.form.get('action')
@@ -67,6 +96,8 @@ def index():
                 get_openai_response(ecli_id)
                 return redirect(url_for('timeline', ecli_id=ecli_id))
 
+        pass
+
     return render_template('index.html')
 
 @app.route('/timeline')
@@ -78,6 +109,10 @@ def timeline():
 @app.route('/over')
 def new_page():
     return render_template('over.html')
+
+@app.errorhandler(429)
+def ratelimit_handler(e):
+    return render_template('429.html'), 429
 
 if __name__ == '__main__':
     app.run(debug=True)
