@@ -1,15 +1,27 @@
 from flask import Flask, request, render_template, redirect, url_for, make_response
-from flask_sqlalchemy import SQLAlchemy
+from dotenv import load_dotenv
+
+#Scraping imports
 from CaseExtractor import scrape_case
+
+#Database imports
+
+from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from openai_integration import get_openai_response
 from models import db, ScrapeRecord, OpenAIResponse
+
+# API Imports
 from api.data_api import api_blueprint
-from dotenv import load_dotenv
-from flask_limiter import Limiter
-from flask_limiter.util import get_remote_address
+
+#Limiter imports
+from limiter_setup import init_limiter
 from redis import Redis
 
+# Async imports
+from celery_worker import make_celery, process_case_async, create_tasks
+
+# General imports
 import json
 import os
 
@@ -18,27 +30,22 @@ load_dotenv()
 
 # Check if Redis Limiter is enabled
 USE_REDIS_LIMITER = os.getenv('USE_REDIS_LIMITER', 'false').lower() == 'true'
+USE_ASYNC = os.getenv('USE_ASYNC', 'false').lower() == 'true'
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['REDIS_URI'] = os.getenv('REDIS_URI', 'redis://localhost:6379/0')  # Fallback to a local Redis
+app.config['CELERY_BROKER_URL'] = os.getenv('REDIS_URI', 'redis://localhost:6379/0')
+app.config['CELERY_RESULT_BACKEND'] = os.getenv('REDIS_URI', 'redis://localhost:6379/0')
 app.register_blueprint(api_blueprint, url_prefix='/api')
 
 db.init_app(app)
 
-if USE_REDIS_LIMITER:
-    from redis import Redis
-    from flask_limiter import Limiter
-    from flask_limiter.util import get_remote_address
-    
-    redis = Redis(host='pvredis-a42qr8.serverless.eun1.cache.amazonaws.com', port=6379, db=0, decode_responses=True, ssl=True)
+# Redis Limiter part
 
-    limiter = Limiter(
-        app=app,
-        key_func=get_remote_address,  # Use the remote address for rate limiting
-        storage_uri="rediss://pvredis-a42qr8.serverless.eun1.cache.amazonaws.com:6379",
-        default_limits=["50 per hour", "5 per minute"]  # Set sensible defaults
-    )
+if USE_REDIS_LIMITER:
+    limiter = init_limiter(app)
 else:
     # Define a dummy limiter decorator that does nothing
     class DummyLimiter:
@@ -48,6 +55,12 @@ else:
             return decorator
 
     limiter = DummyLimiter()
+
+# Async Celery part
+
+celery = make_celery(app) if USE_ASYNC else None
+if celery:
+    create_tasks(celery)
 
 with app.app_context():
     db.create_all()
@@ -65,38 +78,42 @@ def index():
                 # Record exists, so directly go to the timeline
                 return redirect(url_for('timeline', ecli_id=ecli_id))
             else:
-                # No record exists, proceed to scrape and then extract metadata and raw text
-                metadata, extracted_text = scrape_case(ecli_id)  # Ensure scrape_case returns metadata and extracted_text
-                
-                # Parsing and converting dates
-                datum_uitspraak = datetime.strptime(metadata.get('Datum uitspraak', '1900-01-01'), "%d-%m-%Y").date() if 'Datum uitspraak' in metadata else None
-                datum_publicatie = datetime.strptime(metadata.get('Datum publicatie', '1900-01-01'), "%d-%m-%Y").date() if 'Datum publicatie' in metadata else None
+                if USE_ASYNC:
+                    process_case_async.delay(ecli_id)
+                    # No record exists, proceed to scrape and then extract metadata and raw text
+                    metadata, extracted_text = scrape_case(ecli_id)  # Ensure scrape_case returns metadata and extracted_text
+                    
+                    # Parsing and converting dates
+                    datum_uitspraak = datetime.strptime(metadata.get('Datum uitspraak', '1900-01-01'), "%d-%m-%Y").date() if 'Datum uitspraak' in metadata else None
+                    datum_publicatie = datetime.strptime(metadata.get('Datum publicatie', '1900-01-01'), "%d-%m-%Y").date() if 'Datum publicatie' in metadata else None
 
-                # Create a new record with the extracted information
-                new_record = ScrapeRecord(
-                    ecli_id=ecli_id,
-                    instantie=metadata.get('Instantie', None),
-                    datum_uitspraak=datum_uitspraak,
-                    datum_publicatie=datum_publicatie,
-                    zaaknummer=metadata.get('Zaaknummer', None),
-                    formele_relaties=metadata.get('Formele relaties', None),
-                    rechtsgebieden=metadata.get('Rechtsgebieden', None),
-                    bijzondere_kenmerken=metadata.get('Bijzondere kenmerken', None),
-                    inhoudsindicatie=metadata.get('Inhoudsindicatie', None),
-                    vindplaatsen=metadata.get('Vindplaatsen', None),
-                    metadata_json=metadata,  # Storing the entire metadata as a JSON object
-                    raw_text=extracted_text
-                )
-                
-                # Add the new record to the session and commit it to the database
-                db.session.add(new_record)
-                db.session.commit()
+                    # Create a new record with the extracted information
+                    new_record = ScrapeRecord(
+                        ecli_id=ecli_id,
+                        instantie=metadata.get('Instantie', None),
+                        datum_uitspraak=datum_uitspraak,
+                        datum_publicatie=datum_publicatie,
+                        zaaknummer=metadata.get('Zaaknummer', None),
+                        formele_relaties=metadata.get('Formele relaties', None),
+                        rechtsgebieden=metadata.get('Rechtsgebieden', None),
+                        bijzondere_kenmerken=metadata.get('Bijzondere kenmerken', None),
+                        inhoudsindicatie=metadata.get('Inhoudsindicatie', None),
+                        vindplaatsen=metadata.get('Vindplaatsen', None),
+                        metadata_json=metadata,  # Storing the entire metadata as a JSON object
+                        raw_text=extracted_text
+                    )
+                    
+                    # Add the new record to the session and commit it to the database
+                    db.session.add(new_record)
+                    db.session.commit()
 
-                # After storing the scraped data, process it with OpenAI
-                get_openai_response(ecli_id)
-                return redirect(url_for('timeline', ecli_id=ecli_id))
+                    # After storing the scraped data, process it with OpenAI
+                    get_openai_response(ecli_id)
+                    return redirect(url_for('timeline', ecli_id=ecli_id))
+                else:
+                    # Fallback to synchronous execution
 
-        pass
+            pass
 
     return render_template('index.html')
 
