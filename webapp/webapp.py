@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, make_response
 from flask_sqlalchemy import SQLAlchemy
 from CaseExtractor import scrape_case
 from datetime import datetime
@@ -95,6 +95,10 @@ def timeline():
 @app.route('/over')
 def new_page():
     return render_template('over.html')
+
+@app.errorhandler(429)
+def ratelimit_handler(e):
+    return render_template('429.html'), 429
 
 if __name__ == '__main__':
     app.run(debug=True)
