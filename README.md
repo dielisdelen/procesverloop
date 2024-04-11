@@ -42,6 +42,13 @@ flask run
 ```
 
 
+## Flag Toggle
+
+To run the webapp locally add this line to the .env file:
+
+```sh
+USE_REDIS_LIMITER=false  # Change to 'true' to enable Redis and Limiter
+```
 
 ## Steps for Diel
 
