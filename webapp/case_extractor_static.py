@@ -26,7 +26,7 @@ def scrape_case(ecli_id):
     with webdriver.Chrome(options=options) as driver:
         try:
             # Build and log the URL
-            url = "https://uitspraken.rechtspraak.nl/#!/details?id=ECLI:NL:PHR:2005:AT3511"
+            url = f"https://uitspraken.rechtspraak.nl/#!/details?id={ecli_id}"
             logging.info(f'Navigating to URL: {url}')
             driver.get(url)
             print("Hij doet het!")
@@ -69,3 +69,5 @@ def scrape_case(ecli_id):
     except Exception as e:
         logging.error('Error during HTML parsing or content extraction', exc_info=True)
         return {}, "Error during parsing."
+
+scrape_case('ECLI:NL:PHR:2005:AT3511')
