@@ -21,7 +21,7 @@ except Exception as e:
 
 try:
     # Build and log the URL
-    url = "https://www.google.com"
+    url = f"https://uitspraken.rechtspraak.nl/#!/details?id=ECLI:NL:HR:2005:AT3511"
     logging.info(f'Navigating to URL: {url}')
     driver.get(url)
         
