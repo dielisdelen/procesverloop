@@ -1,27 +1,22 @@
 from selenium import webdriver
+from bs4 import BeautifulSoup
 import time
 import logging
 
+# Configure logging
 logging.basicConfig(filename='/var/log/scraperlogs/logfile.log',
                     level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
-options = webdriver.ChromeOptions()
-options.add_argument('--no-sandbox')  # Bypass OS security model, REQUIRED on Linux if running as root
-options.add_argument('--headless=new')  # Run Chrome in headless mode
-options.add_argument('--disable-dev-shm-usage')  # Overcome limited resource problems
-options.add_argument("--disable-gpu")
-options.add_argument('--remote-debugging-pipe')
-
-def basic_scrape():
-    driver = webdriver.Chrome(options=options)
-    driver.get("https://www.google.com")
-    logging.info('Basic Scrape successfully')
-    driver.quit()
-
-basic_scrape()
-
-logging.info('Before Try Setup completed')
+def scrape_case(ecli_id):
+    options = webdriver.ChromeOptions()
+    options.add_argument('--no-sandbox')  # Bypass OS security model, REQUIRED on Linux if running as root
+    options.add_argument('--headless')  # Run Chrome in headless mode
+    options.add_argument('--disable-dev-shm-usage')  # Overcome limited resource problems
+    options.add_argument('--disable-gpu')
+    options.add_argument('--remote-debugging-pipe')
+    options.add_argument('--user-data-dir=/var/www/chrome-data')  # Custom user data directory
+    options.add_argument('--disk-cache-dir=/var/www/chrome-cache')  # Custom cache directory
 
 driver = None
 try:
