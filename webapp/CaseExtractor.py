@@ -3,6 +3,10 @@ from bs4 import BeautifulSoup
 import time
 import logging
 
+logging.basicConfig(filename='/var/log/scraperlogs/logfile.log',
+                    level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
+
 def scrape_case(ecli_id):
     options = webdriver.ChromeOptions()
     options.add_argument('--headless=new')  # Run Chrome in headless mode
