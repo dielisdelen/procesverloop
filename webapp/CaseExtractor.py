@@ -7,7 +7,7 @@ import os
 os.environ['TMPDIR'] = '/var/www/tmp'
 
 # Configure logging
-logging.basicConfig(filename='/var/log/scraperlogs/logfile.log',
+logging.basicConfig(filename='/home/ubuntu/procesverloop/logs/logfile.log',
                     level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
