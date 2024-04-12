@@ -13,18 +13,18 @@ logging.basicConfig(filename='/run/procesverloop-logs/logfile.log',
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 def scrape_case(ecli_id):
-    options = webdriver.FirefoxOptions()
+    options = webdriver.ChromeOptions()
     options.add_argument('-headless=new')  # Run Chrome in headless mode
 
     logging.info(f'So far so good')
-    driver = webdriver.Firefox(options=options)
+    driver = webdriver.Chrome(options=options)
     driver.get("https://www.google.com")
     logging.info(f'Started the driver')
     driver.quit()
     logging.info(f'Quited the driver')
 
     # Ensure the HOME and TMPDIR are set for www-data when initializing the driver
-    with webdriver.Firefox(options=options) as driver:
+    with webdriver.Chrome(options=options) as driver:
         try:
             # Build and log the URL
             url = f"https://uitspraken.rechtspraak.nl/#!/details?id={ecli_id}"
