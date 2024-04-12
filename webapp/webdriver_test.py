@@ -2,6 +2,9 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 import time
 import logging
+import os
+
+os.environ['TMPDIR'] = '/var/www/tmp'
 
 # Configure logging
 logging.basicConfig(filename='/var/log/scraperlogs/logfile.log',
