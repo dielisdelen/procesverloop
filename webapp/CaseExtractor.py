@@ -14,7 +14,9 @@ logging.basicConfig(filename='/run/procesverloop-logs/logfile.log',
 
 def scrape_case(ecli_id):
     options = webdriver.ChromeOptions()
-    options.add_argument('-headless=new')  # Run Chrome in headless mode
+    options.add_argument('--no-sandbox')  # Bypass OS security model, REQUIRED on Linux if running as root
+    options.add_argument('--headless=new')  # Run Chrome in headless mode
+    options.add_argument('--disable-dev-shm-usage')  # Overcome limited resource problems
 
     logging.info(f'So far so good')
     driver = webdriver.Chrome(options=options)
