@@ -8,7 +8,7 @@ import os
 os.environ['TMPDIR'] = '/var/www/tmp'
 
 # Configure logging
-logging.basicConfig(filename='/home/ubuntu/procesverloop/logs/logfile.log',
+logging.basicConfig(filename='/run/procesverloop-logs/logfile.log',
                     level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
