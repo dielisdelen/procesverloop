@@ -73,5 +73,3 @@ def scrape_case(ecli_id):
     except Exception as e:
         logging.error('Error during HTML parsing or content extraction', exc_info=True)
         return {}, "Error during parsing."
-
-scrape_case('ECLI:NL:PHR:2005:AT3511')
