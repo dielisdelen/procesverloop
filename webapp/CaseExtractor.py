@@ -19,7 +19,9 @@ def scrape_case(ecli_id):
     logging.info(f'So far so good')
     driver = webdriver.Firefox(options=options)
     driver.get("https://www.google.com")
+    logging.info(f'Started the driver')
     driver.quit()
+    logging.info(f'Quited the driver')
 
     # Ensure the HOME and TMPDIR are set for www-data when initializing the driver
     with webdriver.Firefox(options=options) as driver:
