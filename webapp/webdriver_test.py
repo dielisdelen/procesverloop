@@ -19,7 +19,7 @@ try:
     logging.info('WebDriver started successfully')
 
     # Build and log the URL
-    url = f"https://uitspraken.rechtspraak.nl/#!/details?id=ECLI:NL:HR:2005:AT3511"
+    url = f"https://www.google.com"
     logging.info(f'Navigating to URL: {url}')
     driver.get(url)
         
@@ -30,7 +30,6 @@ try:
     # Retrieve and log page source
     html = driver.page_source
     logging.info('Page source retrieved')
-
 except Exception as e:
     logging.error('Error during WebDriver operation', exc_info=True)
 
