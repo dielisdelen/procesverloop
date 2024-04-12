@@ -20,6 +20,7 @@ except Exception as e:
     logging.error('Failed to start WebDriver', exc_info=True)
 
 try:
+    driver = webdriver.Chrome(options=options)
     # Build and log the URL
     url = f"https://uitspraken.rechtspraak.nl/#!/details?id=ECLI:NL:HR:2005:AT3511"
     logging.info(f'Navigating to URL: {url}')
