@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 import time
 import logging
 
+os.environ['TMPDIR'] = '/var/www/tmp'
+
 # Configure logging
 logging.basicConfig(filename='/var/log/scraperlogs/logfile.log',
                     level=logging.INFO,
