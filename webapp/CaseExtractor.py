@@ -9,8 +9,8 @@ logging.basicConfig(filename='/var/log/scraperlogs/logfile.log',
 
 def scrape_case(ecli_id):
     options = webdriver.ChromeOptions()
-    options.add_argument('--headless=new')  # Run Chrome in headless mode
     options.add_argument('--no-sandbox')  # Bypass OS security model, REQUIRED on Linux if running as root
+    options.add_argument('--headless=new')  # Run Chrome in headless mode
     options.add_argument('--disable-dev-shm-usage')  # Overcome limited resource problems
     options.add_argument('--remote-debugging-pipe')
     
