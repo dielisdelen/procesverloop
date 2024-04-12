@@ -19,7 +19,7 @@ def scrape_case(ecli_id):
     options.add_argument('--disk-cache-dir=/var/www/chrome-cache')  # Custom cache directory
 
     # Ensure the HOME and TMPDIR are set for www-data when initializing the driver
-    with webdriver.Chrome(options=options, service_args=['--verbose', '--log-path=/var/log/scraperlogs/chromedriver.log']) as driver:
+    with webdriver.Chrome(options=options) as driver:
         try:
             # Build and log the URL
             url = "https://uitspraken.rechtspraak.nl/#!/details?id=ECLI:NL:PHR:2005:AT3511"
