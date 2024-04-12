@@ -13,6 +13,16 @@ options.add_argument('--disable-dev-shm-usage')  # Overcome limited resource pro
 options.add_argument("--disable-gpu")
 options.add_argument('--remote-debugging-pipe')
 
+def basic_scrape():
+    driver = webdriver.Chrome(options=options)
+    driver.get("https://www.google.com")
+    logging.info('Basic Scrape successfully')
+    driver.quit()
+
+basic_scrape()
+
+logging.info('Before Try Setup completed')
+
 driver = None
 try:
     driver = webdriver.Chrome(options=options)
