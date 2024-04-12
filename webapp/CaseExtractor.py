@@ -17,11 +17,6 @@ def scrape_case(ecli_id):
     options.add_argument('-no-sandbox')  # Bypass OS security model, REQUIRED on Linux if running as root
     options.add_argument('-headless=new')  # Run Chrome in headless mode
     options.add_argument('-disable-dev-shm-usage')  # Overcome limited resource problems
-    options.add_argument('-disable-gpu')
-    options.add_argument('-remote-debugging-pipe')
-    options.add_argument('-user-data-dir=/var/www/chrome-data')  # Custom user data directory
-    options.add_argument('-disk-cache-dir=/var/www/chrome-cache')  # Custom cache directory
-    options.add_argument('-disable-crash-reporter')
 
     logging.info(f'So far so good')
     driver = webdriver.Firefox(options=options)
