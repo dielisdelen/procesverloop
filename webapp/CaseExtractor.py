@@ -23,6 +23,11 @@ def scrape_case(ecli_id):
     options.add_argument('--disk-cache-dir=/var/www/chrome-cache')  # Custom cache directory
     options.add_argument('--disable-crash-reporter')
 
+    logging.info(f'So far so good')
+    driver = webdriver.Chrome(options=options)
+    driver.get("https://www.google.com")
+    driver.quit()
+
     # Ensure the HOME and TMPDIR are set for www-data when initializing the driver
     with webdriver.Chrome(options=options) as driver:
         try:

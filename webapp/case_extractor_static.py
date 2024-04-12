@@ -39,6 +39,9 @@ def scrape_case(ecli_id):
             # Retrieve and log page source
             html = driver.page_source
             logging.info('Page source retrieved')
+
+            # Close the WebDriver
+            driver.quit()
         except Exception as e:
             logging.error('Error during page navigation and data retrieval', exc_info=True)
             return {}, "Error during navigation or data retrieval."
