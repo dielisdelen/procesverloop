@@ -13,23 +13,23 @@ logging.basicConfig(filename='/run/procesverloop-logs/logfile.log',
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 def scrape_case(ecli_id):
-    options = webdriver.FirefoxOptions()
-    options.add_argument('-no-sandbox')  # Bypass OS security model, REQUIRED on Linux if running as root
-    options.add_argument('-headless=new')  # Run Chrome in headless mode
-    options.add_argument('-disable-dev-shm-usage')  # Overcome limited resource problems
-    options.add_argument('-disable-gpu')
-    options.add_argument('-remote-debugging-pipe')
-    options.add_argument('-user-data-dir=/var/www/chrome-data')  # Custom user data directory
-    options.add_argument('-disk-cache-dir=/var/www/chrome-cache')  # Custom cache directory
-    options.add_argument('-disable-crash-reporter')
+    options = webdriver.ChromeOptions()
+    options.add_argument('--no-sandbox')  # Bypass OS security model, REQUIRED on Linux if running as root
+    options.add_argument('--headless=new')  # Run Chrome in headless mode
+    options.add_argument('--disable-dev-shm-usage')  # Overcome limited resource problems
+    options.add_argument('--disable-gpu')
+    options.add_argument('--remote-debugging-pipe')
+    options.add_argument('--user-data-dir=/var/www/chrome-data')  # Custom user data directory
+    options.add_argument('--disk-cache-dir=/var/www/chrome-cache')  # Custom cache directory
+    options.add_argument('--disable-crash-reporter')
 
     logging.info(f'So far so good')
-    driver = webdriver.Firefox(options=options)
+    driver = webdriver.Chrome(options=options)
     driver.get("https://www.google.com")
     driver.quit()
 
     # Ensure the HOME and TMPDIR are set for www-data when initializing the driver
-    with webdriver.Firefox(options=options) as driver:
+    with webdriver.Chrome(options=options) as driver:
         try:
             # Build and log the URL
             url = f"https://uitspraken.rechtspraak.nl/#!/details?id={ecli_id}"
@@ -44,8 +44,6 @@ def scrape_case(ecli_id):
             # Retrieve and log page source
             html = driver.page_source
             logging.info('Page source retrieved')
-
-            driver.quit()
         except Exception as e:
             logging.error('Error during page navigation and data retrieval', exc_info=True)
             return {}, "Error during navigation or data retrieval."
