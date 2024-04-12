@@ -21,6 +21,7 @@ def scrape_case(ecli_id):
     options.add_argument('--remote-debugging-pipe')
     options.add_argument('--user-data-dir=/var/www/chrome-data')  # Custom user data directory
     options.add_argument('--disk-cache-dir=/var/www/chrome-cache')  # Custom cache directory
+    options.add_argument('--disable-crash-reporter')
 
     # Ensure the HOME and TMPDIR are set for www-data when initializing the driver
     with webdriver.Chrome(options=options) as driver:
