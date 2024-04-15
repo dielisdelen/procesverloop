@@ -33,7 +33,6 @@ def scrape_case(ecli_id):
             url = f"https://uitspraken.rechtspraak.nl/#!/details?id={ecli_id}"
             logging.info(f'Navigating to URL: {url}')
             driver.get(url)
-            print("Hij doet het!")
             
             # Wait and log dynamic content loading
             time.sleep(6)
