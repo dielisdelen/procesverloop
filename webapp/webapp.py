@@ -19,9 +19,6 @@ from dotenv import load_dotenv
 # Limiter imports
 from limiter_setup import init_limiter
 
-# Async imports
-from celery_worker import make_celery, scrape_case_task, openai_response_task, error_handler
-
 # General imports
 import json
 import os
@@ -43,6 +40,13 @@ app.config['REDIS_URI'] = os.getenv('REDIS_URI', 'redis://localhost:6379/0')  # 
 app.config['CELERY_BROKER_URL'] = os.getenv('REDIS_URI', 'redis://localhost:6379/0')
 app.config['CELERY_RESULT_BACKEND'] = os.getenv('REDIS_URI', 'redis://localhost:6379/0')
 app.register_blueprint(api_blueprint, url_prefix='/api')
+
+# Initialize Celery with the Flask app instance after it's been configured
+from celery_worker import make_celery
+celery = make_celery(app)
+
+# Import tasks after Celery has been initialized
+from celery_worker import scrape_case_task, openai_response_task, error_handler
 
 db.init_app(app)
 

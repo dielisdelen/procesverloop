@@ -13,16 +13,14 @@ def make_celery(flask_app):
         broker=flask_app.config['CELERY_BROKER_URL']
     )
     celery.conf.update(flask_app.config)
-    
+
     class ContextTask(celery.Task):
         def __call__(self, *args, **kwargs):
             with flask_app.app_context():
-                return super().__call__(*args, **kwargs)
-    
+                return super(ContextTask, self).__call__(*args, **kwargs)
+
     celery.Task = ContextTask
     return celery
-
-celery = make_celery(current_app)
 
 @celery.task
 def scrape_case_task(ecli_id):
