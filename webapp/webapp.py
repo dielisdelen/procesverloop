@@ -26,6 +26,9 @@ app.register_blueprint(api_blueprint, url_prefix='/api')
 
 db.init_app(app)
 
+with app.app_context():
+    db.create_all()
+
 if USE_REDIS_LIMITER:
     from redis import Redis
     from flask_limiter import Limiter
@@ -48,9 +51,6 @@ else:
             return decorator
 
     limiter = DummyLimiter()
-
-with app.app_context():
-    db.create_all()
 
 @app.route('/', methods=['GET', 'POST'])
 @limiter.limit("5 per minute")
