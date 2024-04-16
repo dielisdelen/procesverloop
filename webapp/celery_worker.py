@@ -24,6 +24,8 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 redis_uri = os.getenv('REDIS_URI', 'redis://localhost:6379/0')
 celery = Celery(__name__, broker=redis_uri, backend=redis_uri)
 
+logging.info("celery is made")
+
 def init_celery(app):
     # SSL options setup
     ssl_options = {
