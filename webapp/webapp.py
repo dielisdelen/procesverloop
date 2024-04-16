@@ -46,7 +46,7 @@ app.register_blueprint(api_blueprint, url_prefix='/api')
 from celery_worker import make_celery, scrape_case_task, openai_response_task, error_handler
 
 # Initialize Celery with Flask app settings
-make_celery(app)
+celery = make_celery(app)
 
 print("Broker URL:", app.config['CELERY_BROKER_URL'])
 print("Result Backend:", app.config['CELERY_RESULT_BACKEND'])
