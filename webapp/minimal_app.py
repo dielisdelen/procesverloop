@@ -7,7 +7,7 @@ app.config['REDIS_URI'] = 'rediss://pvredis-a42qr8.serverless.eun1.cache.amazona
 
 def make_celery(app):
     redis_uri = app.config['REDIS_URI']
-    celery = Celery(flask_app.import_name, broker=redis_uri, backend=redis_uri)
+    celery = Celery(app.import_name, broker=redis_uri, backend=redis_uri)
 
     # Additional SSL parameters for secure Redis connection
     ssl_options = {
