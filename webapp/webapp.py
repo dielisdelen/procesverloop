@@ -47,6 +47,7 @@ app.register_blueprint(api_blueprint, url_prefix='/api')
 
 # Initialize Celery with Flask app settings
 def make_celery(app):
+    logging.info("Initializing celery")
     redis_uri = app.config['REDIS_URI']
     celery = Celery(app.import_name, broker=redis_uri, backend=redis_uri)
 
