@@ -1,4 +1,8 @@
 from celery import Celery
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def make_celery(app_name, redis_uri):
     celery = Celery(app_name, broker=redis_uri, backend=redis_uri)
@@ -25,7 +29,7 @@ def make_celery(app_name, redis_uri):
     celery.Task = ContextTask
     return celery
 
-redis_uri = app.config['REDIS_PROD_URI']
+redis_uri = os.getenv('REDIS_PROD_URI')
 app_name = 'minimal_app'
 celery = make_celery(app_name, redis_uri)
 
