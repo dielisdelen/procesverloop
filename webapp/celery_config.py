@@ -7,8 +7,6 @@ import logging
 # Load environment variables
 load_dotenv()
 
-from webapp_new import app
-
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -29,9 +27,8 @@ def make_celery(app_name, redis_uri):
 
     class ContextTask(celery.Task):
         def __call__(self, *args, **kwargs):
-            with app.app_context():
             # Assuming app_context is defined if you need to use Flask context
-                return super(ContextTask, self).__call__(*args, **kwargs)
+            return super(ContextTask, self).__call__(*args, **kwargs)
 
     celery.Task = ContextTask
     return celery
