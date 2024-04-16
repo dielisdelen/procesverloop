@@ -1,7 +1,7 @@
 from celery import Celery
 from case_extractor_static import scrape_case
 from openai_integration import get_openai_response
-from models import db, ScrapeRecord, OpenAIResponse
+from models import db, ScrapeRecord
 from datetime import datetime
 import os
 import logging
@@ -10,10 +10,10 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-print("celeryworker called")
+logging.basicConfig(level=logging.DEBUG)
 
 # check if Async is enabled
-USE_ASYNC = os.getenv('USE_ASYNC', 'false').lower() == 'true'
+# USE_ASYNC = os.getenv('USE_ASYNC', 'false').lower() == 'true'
 
 def make_celery(app_name, redis_uri):
     celery = Celery(app_name, broker=redis_uri, backend=redis_uri)

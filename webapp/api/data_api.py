@@ -4,8 +4,6 @@ from models import OpenAIResponse, ScrapeRecord  # Update the import path as nec
 
 api_blueprint = Blueprint('data_api', __name__)
 
-print("data_api called")
-
 db = SQLAlchemy()
 
 @api_blueprint.route('/get-data', methods=['GET'])
