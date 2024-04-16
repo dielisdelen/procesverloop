@@ -21,6 +21,10 @@ def make_celery(app):
         'result_backend': redis_uri,
         'broker_use_ssl': ssl_options,
         'redis_backend_use_ssl': ssl_options,
+        # Routing and queue name configuration to include a consistent hash tag
+        'task_default_queue': 'celery#{webapp}',
+        'task_default_exchange': 'celery#{webapp}',
+        'task_default_routing_key': 'celery#{webapp}',
     })
 
     # Ensure that tasks are executed in the Flask application context
