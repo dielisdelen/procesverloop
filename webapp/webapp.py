@@ -37,9 +37,7 @@ USE_ASYNC = os.getenv('USE_ASYNC', 'false').lower() == 'true'
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['REDIS_URI'] = os.getenv('REDIS_URI', 'redis://localhost:6379/0')  # Fallback to a local Redis
-app.config['CELERY_BROKER_URL'] = os.getenv('REDIS_URI')
-app.config['CELERY_RESULT_BACKEND'] = os.getenv('REDIS_URI')
+app.config['REDIS_URI'] = os.getenv('REDIS_URI', 'redis://localhost:6379/0')
 app.register_blueprint(api_blueprint, url_prefix='/api')
 
 # Import tasks after Celery has been initialized

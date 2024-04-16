@@ -19,6 +19,9 @@ def make_celery(flask_app):
     # Create a Celery instance with Redis as broker and backend
     celery = Celery(flask_app.import_name, broker=redis_uri, backend=redis_uri)
 
+    logging.info(f"Broker URL: {celery.conf['broker_url']}")
+    logging.info(f"Backend URL: {celery.conf['result_backend']}")   
+
     ssl_options = {
         'ssl_cert_reqs': 'required',  # Change to 'optional' or 'none' as per your Redis setup and security requirements
     }
