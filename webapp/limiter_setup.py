@@ -1,8 +1,6 @@
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
-print("limiter_setup called")
-
 def init_limiter(app):
     from redis import Redis
     redis_uri = app.config.get('REDIS_URI', 'redis://localhost:6379/0')

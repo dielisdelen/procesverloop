@@ -1,4 +1,4 @@
-from celery_config import celery, add_together
+from webapp.celery_config_works import celery, add_together
 
 def test_add_together(a, b):
     print(f"Sending task to add {a} and {b}")

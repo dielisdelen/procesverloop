@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 from limiter_setup import init_limiter
 
 
-from celery_config import celery, add_together
+from webapp.celery_config_works import celery, add_together
 import os
 from dotenv import load_dotenv
 
