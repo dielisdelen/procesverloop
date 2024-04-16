@@ -12,9 +12,15 @@ def make_celery(app):
     redis_uri = app.config['REDIS_URI']
     celery = Celery(app.import_name, broker=redis_uri, backend=redis_uri)
 
+    ssl_options = {
+        'ssl_cert_reqs': 'required',  # Change to 'optional' or 'none' as per your Redis setup and security requirements
+    }
+
     celery.conf.update({
         'broker_url': redis_uri,
-        'result_backend': redis_uri
+        'result_backend': redis_uri,
+        'broker_use_ssl': ssl_options,
+        'redis_backend_use_ssl': ssl_options,
     })
 
     # Ensure that tasks are executed in the Flask application context
