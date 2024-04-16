@@ -14,6 +14,8 @@ from dotenv import load_dotenv
 # Limiter imports
 from limiter_setup import init_limiter
 
+from celery_config import celery
+
 # Celery imports
 # from celery_worker import scrape_case_task, openai_response_task, error_handler
 
