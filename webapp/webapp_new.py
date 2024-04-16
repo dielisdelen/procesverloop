@@ -39,7 +39,7 @@ def create_app():
 
     db.init_app(app)
 
-    from celery_worker import scrape_case_task, openai_response_task, error_handler
+    # from celery_worker import scrape_case_task, openai_response_task, error_handler
 
     if USE_REDIS_LIMITER:
         limiter = init_limiter(app)

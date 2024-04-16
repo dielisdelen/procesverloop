@@ -1,4 +1,3 @@
-# celery_worker.py
 from celery_config import celery
 from models import db, ScrapeRecord
 from datetime import datetime
