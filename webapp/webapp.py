@@ -30,9 +30,10 @@ import logging
 load_dotenv()
 
 # Set up basic logging for celery
-if os.getenv('LOGGING_ENABLED', 'false').lower() == 'true':
+logging_enabled = os.getenv('LOGGING_ENABLED', 'false').lower() == 'true'
+if logging_enabled:
     logging.basicConfig(filename='/run/procesverloop-logs/celery.log',
-                        level=logging.INFO,
+                        level=logging.DEBUG,
                         format='%(asctime)s - %(levelname)s - %(message)s')
     
 logging.info("Logging initialized")
