@@ -17,9 +17,19 @@ def make_celery(flask_app):
     redis_uri = flask_app.config['REDIS_URI']
     # Create a Celery instance with Redis as broker and backend
     celery = Celery(flask_app.import_name, broker=redis_uri, backend=redis_uri)
+
+    ssl_options = {
+        'ssl_cert_reqs': 'required',  # Change to 'optional' or 'none' as per your Redis setup and security requirements
+    }
+
     celery.conf.update({
         'broker_transport_options': {'fanout_prefix': True, 'fanout_patterns': True, 'visibility_timeout': 3600},
         'result_backend_transport_options': {'visibility_timeout': 3600},
+        'broker_use_ssl': ssl_options,
+        'redis_backend_use_ssl': ssl_options,
+        'task_default_queue': 'celery{my_app}',
+        'task_default_exchange': 'celery{my_app}',
+        'task_default_routing_key': 'celery{my_app}',
     })
     
     class ContextTask(celery.Task):
