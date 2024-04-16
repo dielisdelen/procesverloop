@@ -44,7 +44,7 @@ USE_REDIS_LIMITER = os.getenv('USE_REDIS_LIMITER', 'false').lower() == 'true'
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['REDIS_URI'] = os.getenv('REDIS_URI', 'redis://localhost:6379/0')
+app.config['REDIS_URI'] = os.getenv('REDIS_URI')
 app.register_blueprint(api_blueprint, url_prefix='/api')
 
 # Initialize Celery with Flask app settings
