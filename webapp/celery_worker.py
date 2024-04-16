@@ -14,8 +14,13 @@ celery = Celery(__name__)
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def make_celery(flask_app):
-    redis_uri = 'rediss://pvredis-a42qr8.serverless.eun1.cache.amazonaws.com:6379'
+    redis_uri = flask_app.config['REDIS_URI']
+    # Create a Celery instance with Redis as broker and backend
     celery = Celery(flask_app.import_name, broker=redis_uri, backend=redis_uri)
+    celery.conf.update({
+        'broker_transport_options': {'fanout_prefix': True, 'fanout_patterns': True, 'visibility_timeout': 3600},
+        'result_backend_transport_options': {'visibility_timeout': 3600},
+    })
     
     class ContextTask(celery.Task):
         def __call__(self, *args, **kwargs):
@@ -38,6 +43,7 @@ def scrape_case_task(ecli_id):
     else:
         logging.info(f"Scraping failed for ECLI ID: {ecli_id}, Error: {extracted_text}")
     return ecli_id, extracted_text
+    pass
 
 @celery.task
 def openai_response_task(ecli_id, extracted_text):
@@ -45,7 +51,9 @@ def openai_response_task(ecli_id, extracted_text):
     response_content = get_openai_response(ecli_id, extracted_text)
     logging.info(f"Received response from OpenAI for ECLI ID: {ecli_id}")
     return response_content
+    pass
 
 @celery.task
 def error_handler(uuid):
     logging.info(f'Task {uuid} raised exception!')
+    pass
