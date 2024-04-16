@@ -15,7 +15,8 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 def make_celery(flask_app):
     # Configure the global celery instance with Flask app settings
-    celery = Celery(flask_app.import_name, broker=flask_app.config['CELERY_BROKER_URL'], backend=flask_app.config['CELERY_RESULT_BACKEND'])
+    redis_uri = app.config.get('REDIS_URI', 'redis://localhost:6379/0')  # Default to localhost if not set
+    celery = Celery(app.import_name, broker=redis_uri, backend=redis_uri)
     
     class ContextTask(celery.Task):
         def __call__(self, *args, **kwargs):
