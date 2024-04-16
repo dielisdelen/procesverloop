@@ -10,8 +10,10 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
+print("celeryworker called")
+
 # check if Async is enabled
-# USE_ASYNC = os.getenv('USE_ASYNC', 'false').lower() == 'true'
+USE_ASYNC = os.getenv('USE_ASYNC', 'false').lower() == 'true'
 
 def make_celery(app_name, redis_uri):
     celery = Celery(app_name, broker=redis_uri, backend=redis_uri)
@@ -39,8 +41,8 @@ def make_celery(app_name, redis_uri):
     return celery
 
 # Create and configure a single Celery instance.
-redis_uri = os.getenv('REDIS_URI', 'redis://localhost:6379/0')
-app_name = 'webapp'
+redis_uri = os.getenv('REDIS_URI')
+app_name = 'webapp_new'
 celery = make_celery(app_name, redis_uri)
 
 @celery.task

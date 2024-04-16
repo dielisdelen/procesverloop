@@ -5,6 +5,8 @@ import time
 import logging
 import os
 
+print("case_extractor_static called")
+
 os.environ['TMPDIR'] = '/var/www/tmp'
 
 # Configure logging
@@ -75,3 +77,5 @@ def scrape_case(ecli_id):
     except Exception as e:
         logging.error('Error during HTML parsing or content extraction', exc_info=True)
         return {}, "Error during parsing."
+
+print("done")

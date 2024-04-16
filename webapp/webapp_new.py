@@ -1,12 +1,8 @@
 from flask import Flask, request, render_template, redirect, url_for, make_response, jsonify
 
-# Scraping Imports
-from case_extractor_static import scrape_case
-
 # Database Imports
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
-from openai_integration import get_openai_response
 from models import db, ScrapeRecord, OpenAIResponse
 
 # API Imports
@@ -40,6 +36,9 @@ app.config['REDIS_URI'] = os.getenv('REDIS_URI')
 app.config['REDIS_PROD_URI'] = os.getenv('REDIS_PROD_URI')
 app.register_blueprint(api_blueprint, url_prefix='/api')
 
+print("Database URI:", os.getenv('DATABASE_URI'))
+print("Redis URI:", os.getenv('REDIS_URI'))
+
 db.init_app(app)
 
 if USE_REDIS_LIMITER:
@@ -53,6 +52,8 @@ else:
             return decorator
 
     limiter = DummyLimiter()
+
+print("Limiter initiated")
 
 @app.route('/', methods=['GET', 'POST'])
 @limiter.limit("5 per minute")
@@ -77,19 +78,29 @@ def index():
 
     return render_template('index.html')
 
+print("Route / done")
+
 @app.route('/timeline')
 def timeline():
     ecli_id = request.args.get('ecli_id', '')
     # Now just passing ecli_id to the template, no events
     return render_template('timeline.html', ecli_id=ecli_id)
 
+print("Route timeline done")
+
 @app.route('/over')
 def new_page():
     return render_template('over.html')
+
+print("Route over done")
 
 @app.errorhandler(429)
 def ratelimit_handler(e):
     return render_template('429.html'), 429
 
+print("Route 429 done")
+
 if __name__ == '__main__':
     app.run(debug=True)
+
+print("app runs")

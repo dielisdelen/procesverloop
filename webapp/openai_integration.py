@@ -8,6 +8,8 @@ import json
 # Load environment variables
 load_dotenv()
 
+print("openai_integation called")
+
 client = OpenAI(
     api_key=os.environ.get("OPENAI_API_KEY"),
 )
@@ -55,4 +57,4 @@ def get_openai_response(ecli_id):
         current_app.logger.error(f"Error sending data to OpenAI for ECLI ID: {ecli_id}, Error: {e}")
         return "Error processing data with OpenAI."
 
-
+print("done")
