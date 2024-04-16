@@ -46,9 +46,6 @@ from celery_worker import make_celery, scrape_case_task, openai_response_task, e
 # Initialize Celery with Flask app settings
 celery = make_celery(app)
 
-print("Broker URL:", app.config['CELERY_BROKER_URL'])
-print("Result Backend:", app.config['CELERY_RESULT_BACKEND'])
-
 db.init_app(app)
 
 with app.app_context():
