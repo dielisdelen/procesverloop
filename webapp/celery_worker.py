@@ -15,7 +15,7 @@ celery = Celery(__name__)
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def make_celery(flask_app):
-    flask_app.config['REDIS_URI'] = os.getenv('REDIS_URI', 'redis://localhost:6379/0')
+    redis_uri = flask_app.config['REDIS_URI'] = os.getenv('REDIS_URI', 'redis://localhost:6379/0')
     # Create a Celery instance with Redis as broker and backend
     celery = Celery(flask_app.import_name, broker=redis_uri, backend=redis_uri)
 
