@@ -2,6 +2,8 @@
 from celery import Celery
 import os
 from dotenv import load_dotenv
+from celery_worker import scrape_case_task, openai_response_task, error_handler
+
 
 # Load environment variables
 load_dotenv()
