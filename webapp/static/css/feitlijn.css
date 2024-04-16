@@ -1,3 +1,101 @@
+lottie-player {
+  margin: 0 auto;
+}
+
+.lottieplayer_centered {
+  width: 100%;
+  align-content: center;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; }
+  20%, 80% { opacity: 1; }
+}
+
+.loading_text {
+  font-size: 1.8em;
+  text-align: center;
+}
+
+.rounded-button {
+  background-color: #f9b0ff;
+  color: #0400d8;
+  font-size: 1.2em;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transition for background color and transform */
+}
+
+.rounded-button:hover {
+  background-color: #fcb6ff; /* Lighter pink on hover */
+  transform: scale(1.02); /* Slightly enlarge the button on hover */
+}
+
+.rounded-button:focus {
+  outline: 2px solid #0400d8; /* Add an outline when the button is focused */
+}
+
+
+.feitlijn_standpunten_wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  width: 100%;
+}
+
+.standpunt_card {
+  flex: 1;
+  background-color: #ECEBFC;
+  border-radius: 8px;
+  padding: 1rem;
+  box-sizing: border-box; /* Makes sure padding and border are included in the width */
+  gap: 0.4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.feitlijn_standpunten_wrapper {
+  margin-bottom: 2rem;
+}
+
+.oordeel_wrapper {
+  margin-top: 2rem;
+
+}
+
+.emoji_card {
+  flex: 1;
+  background-color: #ECEBFC;
+  border-radius: 8px;
+  padding: 1rem;
+  box-sizing: border-box; /* Makes sure padding and border are included in the width */
+  gap: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.emojis {
+  font-size: 4rem;
+}
+
+.feitlijn_subkop {
+  color: #0400D8;
+  font-size: 1.5rem;
+  margin: 0 0 1rem 0; /* Add space below the header */
+}
+
+.feitlijn_meta_data_text {
+  color: #0400D8;
+  font-size: 1rem;
+  margin: 0; /* Removes default paragraph margin */
+}
+
+
+
 
 .feitlijn_wrapper a {
   color: var(--blue);
@@ -620,6 +718,14 @@ figure {
   display: inline-block;
 }
 
+.hero_logo_big {
+  width: 20rem;
+  display: inline-block;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+
+
 .nav-wrapper {
   z-index: 1;
   grid-column-gap: 2.8rem;
@@ -672,17 +778,20 @@ figure {
 }
 
 .loader_wrapper {
-  z-index: 1;
-  grid-column-gap: 2.8rem;
-  grid-row-gap: 2.8rem;
-  color: var(--white-smoke);
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
-  margin-bottom: 4rem;
-  display: block;
+  color: var(--white-smoke);
+  margin-top: 2rem;
 }
+
+#lottie {
+  display: block; /* or 'inline-block' based on your needs */
+  width: 8rem; /* Ensures it fills the container and centers correctly */
+  align-items: center;
+}
+
 
 
 .footer {
@@ -732,7 +841,7 @@ figure {
 
 
 .logo_patroon {
-  width: 8rem;
+  width: 5rem;
 }
 
 .div-block-9 {

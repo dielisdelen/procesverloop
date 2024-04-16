@@ -1,3 +1,6 @@
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
   var links = document.querySelectorAll('.fillLink');
   links.forEach(function(link) {
@@ -17,7 +20,7 @@ document.getElementById('ecli_button').addEventListener('click', function() {
   
   // Then, find the element with the ID 'loader'
   // and set its display property to 'block' to show it
-  document.getElementById('loader').style.display = 'block';
+  document.getElementById('loader').style.display = 'flex';
 });
 
 
