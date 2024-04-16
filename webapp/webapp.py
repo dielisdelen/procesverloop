@@ -29,8 +29,11 @@ import logging
 # Load environment variables
 load_dotenv()
 
-# Set up basic logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+# Set up basic logging for celery
+if os.getenv('LOGGING_ENABLED', 'false').lower() == 'true':
+    logging.basicConfig(filename='/run/procesverloop-logs/celery.log',
+                        level=logging.INFO,
+                        format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Check if Redis Limiter is enabled
 USE_REDIS_LIMITER = os.getenv('USE_REDIS_LIMITER', 'false').lower() == 'true'
