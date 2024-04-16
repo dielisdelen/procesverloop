@@ -30,9 +30,6 @@ load_dotenv()
 # Check if Redis Limiter is enabled
 USE_REDIS_LIMITER = os.getenv('USE_REDIS_LIMITER', 'false').lower() == 'true'
 
-# check if Async is enabled
-USE_ASYNC = os.getenv('USE_ASYNC', 'false').lower() == 'true'
-
 # loading configuration
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')

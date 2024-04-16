@@ -8,6 +8,9 @@ import os
 import logging
 from dotenv import load_dotenv
 
+# check if Async is enabled
+# USE_ASYNC = os.getenv('USE_ASYNC', 'false').lower() == 'true'
+
 # Create a Celery instance as a global variable
 celery = Celery(__name__)
 
@@ -15,8 +18,8 @@ celery = Celery(__name__)
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def make_celery(flask_app):
-    redis_uri = flask_app.config['REDIS_URI']
-    print(f"The redis uri: {redis_uri}")
+    redis_uri = os.getenv('REDIS_URI', 'redis://localhost:6379/0')
+    logging.info(f"The redis uri: {redis_uri}")
     # Create a Celery instance with Redis as broker and backend
     celery = Celery(flask_app.import_name, broker=redis_uri, backend=redis_uri)
 
