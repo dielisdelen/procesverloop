@@ -20,10 +20,13 @@ from limiter_setup import init_limiter
 # General imports
 import json
 import os
-
+import logging
 
 # Load environment variables
 load_dotenv()
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Check if Redis Limiter is enabled
 USE_REDIS_LIMITER = os.getenv('USE_REDIS_LIMITER', 'false').lower() == 'true'
@@ -51,6 +54,7 @@ def create_app():
 
         limiter = DummyLimiter()
 
+    logger.info("importing celery worker stuff")
     from celery_worker import scrape_case_task, openai_response_task, error_handler
 
     @app.route('/', methods=['GET', 'POST'])
