@@ -34,6 +34,8 @@ if os.getenv('LOGGING_ENABLED', 'false').lower() == 'true':
     logging.basicConfig(filename='/run/procesverloop-logs/celery.log',
                         level=logging.INFO,
                         format='%(asctime)s - %(levelname)s - %(message)s')
+    
+logging.info("Logging initialized")
 
 # Check if Redis Limiter is enabled
 USE_REDIS_LIMITER = os.getenv('USE_REDIS_LIMITER', 'false').lower() == 'true'
