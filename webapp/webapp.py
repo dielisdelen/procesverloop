@@ -42,9 +42,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['REDIS_URI'] = os.getenv('REDIS_URI', 'redis://localhost:6379/0')
 app.register_blueprint(api_blueprint, url_prefix='/api')
 
-# Import tasks after Celery has been initialized
-from celery_worker import scrape_case_task, openai_response_task, error_handler
-
 # Initialize Celery with Flask app settings
 def make_celery(app):
     redis_uri = app.config['REDIS_URI']
@@ -59,9 +56,9 @@ def make_celery(app):
         'result_backend': redis_uri,
         'broker_use_ssl': ssl_options,
         'redis_backend_use_ssl': ssl_options,
-        'task_default_queue': 'celery{my_app1}',
-        'task_default_exchange': 'celery{my_app2}',
-        'task_default_routing_key': 'celery{my_app3}',
+        'task_default_queue': 'celery{my_app}',
+        'task_default_exchange': 'celery{my_app}',
+        'task_default_routing_key': 'celery{my_app}',
     })
 
     # Ensure that tasks are executed in the Flask application context
@@ -72,9 +69,6 @@ def make_celery(app):
 
     celery.Task = ContextTask
     return celery
-
-# Import tasks after Celery has been initialized
-from celery_worker import init_celery, scrape_case_task, openai_response_task, error_handler
 
 celery = make_celery(app)
 
