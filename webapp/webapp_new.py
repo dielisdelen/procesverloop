@@ -53,12 +53,6 @@ def create_app():
 
         limiter = DummyLimiter()
 
-    @celery.task
-    def trigger_task():
-        print("This is a scheduled task.")
-
-    trigger_task()
-
     from celery_worker import scrape_case_task, openai_response_task, error_handler
 
     @app.route('/', methods=['GET', 'POST'])
