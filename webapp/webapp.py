@@ -119,6 +119,11 @@ def openai_response_task(ecli_id, extracted_text):
     pass
 
 @celery.task
+def add(x, y):
+    return x + y
+
+
+@celery.task
 def error_handler(uuid):
     logging.info(f'Task {uuid} raised exception!')
     pass
