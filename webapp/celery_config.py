@@ -2,11 +2,16 @@
 from celery import Celery
 import os
 from dotenv import load_dotenv
+import logging
 
 # Load environment variables
 load_dotenv()
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 def make_celery(app_name, redis_uri):
+    logger.info("Initializing Celery for app: %s", app_name)
     celery = Celery(app_name, broker=redis_uri, backend=redis_uri)
 
     ssl_options = {
