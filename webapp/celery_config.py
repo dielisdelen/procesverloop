@@ -4,6 +4,8 @@ import os
 from dotenv import load_dotenv
 import logging
 
+import celery_worker
+
 # Load environment variables
 load_dotenv()
 
@@ -36,3 +38,5 @@ def make_celery(app_name, redis_uri):
 redis_uri = os.getenv('REDIS_PROD_URI')
 app_name = 'webapp_new'
 celery = make_celery(app_name, redis_uri)
+
+celery.autodiscover_tasks(['webapp'])
