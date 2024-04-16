@@ -8,6 +8,9 @@ import os
 import logging
 from dotenv import load_dotenv
 
+# Load environment variables
+load_dotenv()
+
 # check if Async is enabled
 # USE_ASYNC = os.getenv('USE_ASYNC', 'false').lower() == 'true'
 
