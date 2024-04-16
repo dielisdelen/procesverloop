@@ -38,10 +38,10 @@ app.config['REDIS_URI'] = os.getenv('REDIS_URI', 'redis://localhost:6379/0')
 app.register_blueprint(api_blueprint, url_prefix='/api')
 
 # Import tasks after Celery has been initialized
-from celery_worker import make_celery, scrape_case_task, openai_response_task, error_handler
+from celery_worker import init_celery, scrape_case_task, openai_response_task, error_handler
 
 # Initialize Celery with Flask app settings
-celery = make_celery(app)
+init_celery(app)
 
 db.init_app(app)
 

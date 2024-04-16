@@ -15,41 +15,49 @@ load_dotenv()
 # USE_ASYNC = os.getenv('USE_ASYNC', 'false').lower() == 'true'
 
 # Create a Celery instance as a global variable
-# celery = Celery(__name__,)
+# celery = Celery(__name__)
 
 # Set up basic logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-def make_celery(flask_app):
-    redis_uri = os.getenv('REDIS_URI', 'redis://localhost:6379/0')
-    logging.info(f"The redis uri: {redis_uri}")
-    # Create a Celery instance with Redis as broker and backend
-    celery = Celery(flask_app.import_name, broker=redis_uri, backend=redis_uri)
+# Create and configure a single Celery instance.
+redis_uri = os.getenv('REDIS_URI', 'redis://localhost:6379/0')
+celery = Celery(__name__, broker=redis_uri, backend=redis_uri)
 
-    logging.info(f"Broker URL: {celery.conf['broker_url']}")
-    logging.info(f"Backend URL: {celery.conf['result_backend']}")   
-
+def init_celery(app):
+    # SSL options setup
     ssl_options = {
-        'ssl_cert_reqs': 'required',  # Change to 'optional' or 'none' as per your Redis setup and security requirements
+        'ssl_cert_reqs': 'required',  # Or change to 'optional' or 'none' based on your Redis SSL setup
     }
 
-    celery.conf.update({
-        'broker_transport_options': {'fanout_prefix': True, 'fanout_patterns': True, 'visibility_timeout': 3600},
-        'result_backend_transport_options': {'visibility_timeout': 3600},
-        'broker_use_ssl': ssl_options,
-        'redis_backend_use_ssl': ssl_options,
-        'task_default_queue': 'celery{my_app}',
-        'task_default_exchange': 'celery{my_app}',
-        'task_default_routing_key': 'celery{my_app}',
-    })
-    
+    # General Celery configuration
+    celery.conf.update(
+        broker_url=app.config['REDIS_URI'],
+        result_backend=app.config['REDIS_URI'],
+        broker_transport_options={
+            'fanout_prefix': True,
+            'fanout_patterns': True,
+            'visibility_timeout': 3600
+        },
+        result_backend_transport_options={
+            'visibility_timeout': 3600
+        },
+        broker_use_ssl=ssl_options,
+        redis_backend_use_ssl=ssl_options,
+        # Routing and queue name configuration to include a consistent hash tag
+        task_default_queue='celery{my_app}',
+        task_default_exchange='celery{my_app}',
+        task_default_routing_key='celery{my_app}',
+    )
+
+    # Ensure that tasks are executed in the Flask application context
     class ContextTask(celery.Task):
+        abstract = True
         def __call__(self, *args, **kwargs):
-            with flask_app.app_context():
+            with app.app_context():
                 return super(ContextTask, self).__call__(*args, **kwargs)
 
     celery.Task = ContextTask
-    return celery
 
 @celery.task
 def scrape_case_task(ecli_id):
