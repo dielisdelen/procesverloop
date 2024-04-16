@@ -1,4 +1,3 @@
-# minimal_app.py
 from flask import Flask
 from celery import Celery
 
@@ -11,20 +10,24 @@ def make_celery(app):
 
     # Additional SSL parameters for secure Redis connection
     ssl_options = {
-        'ssl_cert_reqs': 'required',  # Change to 'optional' or 'none' as per your Redis setup and security requirements
+        'ssl_cert_reqs': 'required'  # Change to 'optional' or 'none' as per your Redis setup and security requirements
     }
     
-    # Update Redis URL with additional SSL options
+    # Update Redis URL with additional SSL options and configure key prefix with hash tags
     celery.conf.update(
         broker_use_ssl=ssl_options,
-        redis_backend_use_ssl=ssl_options
+        redis_backend_use_ssl=ssl_options,
+        task_default_queue='celery#{my_app}',
+        task_default_exchange='celery#{my_app}',
+        task_default_routing_key='celery#{my_app}',
     )
 
+    # Ensure that tasks are executed in the Flask application context
     class ContextTask(celery.Task):
         def __call__(self, *args, **kwargs):
             with app.app_context():
                 return super(ContextTask, self).__call__(*args, **kwargs)
-    
+
     celery.Task = ContextTask
     return celery
 
