@@ -20,6 +20,8 @@ load_dotenv()
 # Set up basic logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+logging.info("Helemaal aan het begin")
+
 # Create and configure a single Celery instance.
 redis_uri = os.getenv('REDIS_URI', 'redis://localhost:6379/0')
 celery = Celery(__name__, broker=redis_uri, backend=redis_uri)
