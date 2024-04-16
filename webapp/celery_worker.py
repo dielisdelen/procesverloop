@@ -15,7 +15,7 @@ load_dotenv()
 # USE_ASYNC = os.getenv('USE_ASYNC', 'false').lower() == 'true'
 
 # Create a Celery instance as a global variable
-celery = Celery(__name__)
+# celery = Celery(__name__,)
 
 # Set up basic logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
