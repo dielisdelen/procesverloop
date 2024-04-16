@@ -6,7 +6,7 @@ import os
 load_dotenv()
 
 app = Flask(__name__)
-app.config['REDIS_URI'] = os.getenv('REDIS_URI', 'redis://localhost:6379/0')
+app.config['REDIS_URI'] = os.getenv('REDIS_URI')
 
 def make_celery(app):
     redis_uri = app.config['REDIS_URI']
