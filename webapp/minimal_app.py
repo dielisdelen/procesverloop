@@ -2,7 +2,7 @@ from flask import Flask
 from celery import Celery
 
 app = Flask(__name__)
-app.config['REDIS_URI'] = 'pvredissingle.a42qr8.ng.0001.eun1.cache.amazonaws.com:6379'
+app.config['REDIS_URI'] = 'rediss://pvredissingle.a42qr8.ng.0001.eun1.cache.amazonaws.com:6379'
 
 def make_celery(app):
     redis_uri = app.config['REDIS_URI']
