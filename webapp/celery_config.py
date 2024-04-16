@@ -34,5 +34,5 @@ def make_celery(app_name, redis_uri):
     return celery
 
 redis_uri = os.getenv('REDIS_PROD_URI')
-app_name = 'minimal_app'
+app_name = 'webapp_new'
 celery = make_celery(app_name, redis_uri)
