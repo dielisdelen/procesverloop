@@ -1,11 +1,10 @@
 from celery import Celery
 
-def make_celery(app):
-    redis_uri = app.config['REDIS_PROD_URI']
-    celery = Celery(app.import_name, broker=redis_uri, backend=redis_uri)
+def make_celery(app_name, redis_uri):
+    celery = Celery(app_name, broker=redis_uri, backend=redis_uri)
 
     ssl_options = {
-        'ssl_cert_reqs': 'required',  # Change to 'optional' or 'none' as per your Redis setup
+        'ssl_cert_reqs': 'required',  # Adjust according to your Redis SSL settings
     }
 
     celery.conf.update({
@@ -20,11 +19,15 @@ def make_celery(app):
 
     class ContextTask(celery.Task):
         def __call__(self, *args, **kwargs):
-            with app.app_context():
-                return super(ContextTask, self).__call__(*args, **kwargs)
+            # Assuming app_context is defined if you need to use Flask context
+            return super(ContextTask, self).__call__(*args, **kwargs)
 
     celery.Task = ContextTask
     return celery
+
+redis_uri = app.config['REDIS_PROD_URI']
+app_name = 'minimal_app'
+celery = make_celery(app_name, redis_uri)
 
 @celery.task
 def add_together(a, b):
