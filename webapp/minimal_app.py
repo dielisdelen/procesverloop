@@ -6,10 +6,10 @@ import os
 load_dotenv()
 
 app = Flask(__name__)
-app.config['REDIS_URI'] = os.getenv('REDIS_URI')
+app.config['REDIS_PROD_URI'] = os.getenv('REDIS_PROD_URI')
 
 def make_celery(app):
-    redis_uri = app.config['REDIS_URI']
+    redis_uri = app.config['REDIS_PROD_URI']
     celery = Celery(app.import_name, broker=redis_uri, backend=redis_uri)
 
     ssl_options = {
