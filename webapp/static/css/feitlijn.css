@@ -1,3 +1,19 @@
+.form_wrapper {
+position: relative;
+display: flex;
+flex-direction: row;
+padding: 0.75rem;
+border-radius: 4rem;
+background: var(--glass);
+margin-bottom: 1rem;
+  
+}
+
+.input_with_suggestion {
+  width: 100%;
+
+}
+
 lottie-player {
   margin: 0 auto;
 }
@@ -382,7 +398,6 @@ figure {
 .hero_wrapper {
   z-index: 1;
   grid-column-gap: 2.8rem;
-  grid-row-gap: 2.8rem;
   color: var(--white-smoke);
   flex-direction: column;
   justify-content: center;
@@ -391,7 +406,7 @@ figure {
 }
 
 .title-highlight-wrapper {
-  margin-bottom: 3em;
+  margin-top: 3rem;
   font-size: .7em;
 }
 
@@ -625,10 +640,7 @@ figure {
 }
 
 
-#ecli_button:hover {
-  background-color: #bf65e5; /* Blue background on hover */
-  color: #2f1979; /* White text on hover (optional) */
-}
+
 
 .feitlijn_footer_text {
   color: var(--blue);
@@ -682,18 +694,20 @@ figure {
 }
 
 .form {
-  grid-column-gap: 10px;
-  grid-row-gap: 10px;
-  height: 5rem;
+
+ 
   display: flex;
+  align-items: center;
 }
 
 .ecli_field {
   color: var(--blue);
-  border-radius: 10px;
   height: 100%;
   margin-bottom: 0;
   font-size: 2.1rem;
+  width: 100%;
+  border-radius: 3rem;
+  padding: 1.35rem 18rem 1.35rem 2.25rem;
 }
 
 .ecli_field::placeholder {
@@ -704,8 +718,20 @@ figure {
 .submit-button {
   background-color: var(--pink);
   color: var(--dark-grey);
-  border-radius: 10px;
+  border-radius: 3rem;
   font-weight: 700;
+  position: absolute;
+  right: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  font-size: 1.2rem;
+  transition: all 0.2s;
+}
+
+.submit-button:hover {
+  background-color: hsl(294, 100%, 90%);
 }
 
 .ecli_link {
@@ -721,7 +747,7 @@ figure {
 .hero_logo_big {
   width: 20rem;
   display: inline-block;
-  margin-top: 2rem;
+  margin-top: 3rem;
   margin-bottom: 3rem;
 }
 
@@ -946,6 +972,20 @@ figure {
     font-size: .87rem;
   }
 
+  .form {
+    display: block;
+  }
+
+  .ecli_field {
+
+    padding: 1.35rem 2.25rem 1.35rem 2.25rem;
+  }
+
+  .submit-button {
+    width: 100%;
+    right: 0rem;
+    margin-top: 1rem;
+  }
   .gutter-outside {
     padding-left: 6vw;
     padding-right: 6vw;
@@ -1075,17 +1115,8 @@ figure {
     margin-right: 0;
   }
 
-  .form {
-    margin-right: 0;
-    display: flex;
-    flex-direction: column;
-    height: auto;
-  }
 
-  #ecli_button {
-    height: 4em;
-    font-size: 16px;
-  }
+ 
 
 
 }

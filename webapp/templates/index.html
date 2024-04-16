@@ -74,34 +74,33 @@
         <div class="container-w3 gutter-outside">
           <div class="text-center">
             <div class="intro-description">
-              <p class="copy-medium">Vul een ECLI nummer in en maak een tijdlijn van de belangrijkste feiten uit een vonnis of arrest.</p>
+              <p class="copy-medium">Voer een ECLI in en maak een tijdlijn van de belangrijkste feiten uit een vonnis of arrest.</p>
             </div>
           </div>
         </div>
+      
         <div class="form_wrapper">
-          <div class="form_wrapper_with_button w-form">
+          <div class="input_with_suggestion">
             <form id="ecli_form" name="ecli_id" data-name="Email Form" method="post" action="/" class="form" type="text" required>
               <!-- Ensure the input name matches what your Flask app expects -->
-              <input class="ecli_field w-input" maxlength="256" name="ecli_id" data-name="ECLI ID" placeholder="ECLI:NL:PHR:1965:AB7079" type="text" id="ecli_id">
+              <input class="ecli_field w-input" maxlength="256" name="ecli_id" data-name="ECLI ID" placeholder="Voer een ECLI in" type="text" id="ecli_id">
               <!-- Hidden input field to indicate the action -->
               <input type="hidden" name="action" value="extract">
               <input type="submit" id="ecli_button" class="submit-button w-button" value="Geef me de feiten">
             </form>
-            <div class="w-form-done">
-              <div>Thank you! Your submission has been received!</div>
-            </div>
-            <div class="w-form-fail">
-              <div>Oops! Something went wrong while submitting the form.</div>
-            </div>
+          
           </div>
-        </div>
+        </div> 
+
         <div class="text-center">
-          <p class="copy_small">Even geen ECLI nummer bij de hand? Probeer <span class="ecli_link"><a href="#"
+          <p class="copy_small">Geen ECLI bij de hand? Probeer <span class="ecli_link"><a href="#"
                 class="fillLink" data-text="ECLI:NL:PHR:1965:AB7079">ECLI:NL:PHR:1965:AB7079</a></span>.
           </p>
         </div>
       </div>
     </div>
+
+   
 
 
     
