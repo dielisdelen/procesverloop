@@ -15,21 +15,15 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 def make_celery(flask_app):
     # Configure the global celery instance with Flask app settings
-    celery.main = flask_app.import_name
-    celery.conf.update(
-        backend=flask_app.config['CELERY_RESULT_BACKEND'],
-        broker=flask_app.config['CELERY_BROKER_URL']
-    )
+    celery = Celery(flask_app.import_name, broker=flask_app.config['CELERY_BROKER_URL'], backend=flask_app.config['CELERY_RESULT_BACKEND'])
     
-    # Ensure that tasks are executed in the flask application context
     class ContextTask(celery.Task):
         def __call__(self, *args, **kwargs):
             with flask_app.app_context():
                 return super(ContextTask, self).__call__(*args, **kwargs)
-                
-    celery.Task = ContextTask
 
-    return celery  # This returns the configured global instance
+    celery.Task = ContextTask
+    return celery
 
 @celery.task
 def scrape_case_task(ecli_id):
