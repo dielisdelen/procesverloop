@@ -62,6 +62,7 @@ def init_celery(app):
                 return super(ContextTask, self).__call__(*args, **kwargs)
 
     celery.Task = ContextTask
+    return celery
 
 @celery.task
 def scrape_case_task(ecli_id):
