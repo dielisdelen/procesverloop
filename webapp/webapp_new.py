@@ -52,7 +52,7 @@ def create_app():
         limiter = DummyLimiter()
 
     # Celery imports
-    from .tasks import scrape_case_task, openai_response_task, error_handler    
+    from celery_config import scrape_case_task, openai_response_task, error_handler    
 
     @app.route('/', methods=['GET', 'POST'])
     @limiter.limit("5 per minute")
