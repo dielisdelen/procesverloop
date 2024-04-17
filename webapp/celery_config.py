@@ -36,3 +36,7 @@ def make_celery(app_name, redis_uri):
 redis_uri = os.getenv('REDIS_PROD_URI')
 app_name = 'webapp_new'
 celery = make_celery(app_name, redis_uri)
+
+@celery.task(name='webapp.example_task')
+def example_task():
+    print("This task runs from webapp.")
