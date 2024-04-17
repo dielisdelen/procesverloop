@@ -19,8 +19,8 @@ lottie-player {
 }
 
 .lottieplayer_centered {
-  width: 100%;
-  align-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 @keyframes fadeInOut {
@@ -33,25 +33,6 @@ lottie-player {
   text-align: center;
 }
 
-.rounded-button {
-  background-color: #f9b0ff;
-  color: #0400d8;
-  font-size: 1.2em;
-  padding: 0.5em 1em;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s; /* Smooth transition for background color and transform */
-}
-
-.rounded-button:hover {
-  background-color: #fcb6ff; /* Lighter pink on hover */
-  transform: scale(1.02); /* Slightly enlarge the button on hover */
-}
-
-.rounded-button:focus {
-  outline: 2px solid #0400d8; /* Add an outline when the button is focused */
-}
 
 
 .feitlijn_standpunten_wrapper {
@@ -715,6 +696,30 @@ figure {
   font-size: 2.1rem;
 }
 
+.rounded-button {
+  background-color: var(--pink);
+  color: var(--dark-grey);
+  border-radius: 3rem;
+  font-weight: 700;
+  right: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  font-size: 1.2rem;
+  transition: all 0.2s;
+}
+
+.rounded-button:hover {
+  background-color: hsl(294, 100%, 90%);
+}
+
+.rounded-button:focus {
+  outline: 2px solid #0400d8; /* Add an outline when the button is focused */
+}
+
+
+
 .submit-button {
   background-color: var(--pink);
   color: var(--dark-grey);
@@ -742,6 +747,7 @@ figure {
 .hero_logo_small {
   width: 5rem;
   display: inline-block;
+  margin-bottom: 3rem;
 }
 
 .hero_logo_big {
