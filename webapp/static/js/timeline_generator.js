@@ -20,8 +20,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // Display general information
             document.getElementById('ecli').textContent = `ECLI: ${openaiData.generalInfo.ECLI}`;
             document.getElementById('court').textContent = `${data.instantie}`;
-            document.getElementById('standpunt_eiser').textContent = `${openaiData.legalDetails.defenceOfDefendant}`;
-            document.getElementById('standpunt_verweerder').textContent = `${openaiData.legalDetails.conclusionOfCourt}`;
+            document.getElementById('standpunt_eiser').textContent = `${openaiData.legalDetails.claimsOfPlaintiff}`;
+            document.getElementById('standpunt_verweerder').textContent = `${openaiData.legalDetails.defenceOfDefendant}`;
+            document.getElementById('oordeel_rechter').textContent = `${openaiData.legalDetails.conclusionOfCourt}`;
             document.getElementById('vonnis_in_emojis').textContent = `${openaiData.legalDetails.emojiSummary}`;
 
             // Find the placeholder where the URL should be inserted
