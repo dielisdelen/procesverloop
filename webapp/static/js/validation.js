@@ -1,14 +1,12 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('ecli_form');
-    if (form) {
-        form.addEventListener('submit', function(event) {
-            event.preventDefault(); // Always prevent default submission initially
-            if (validateECLI()) {
-                showLoadingModal(); // This function will now also start the text updates
-            } else {
-                console.log("Invalid ECLI, not showing the modal.");
-            }
-        });
+form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Always prevent default submission initially
+    if (validateECLI()) {
+        showLoadingModal();
+        setTimeout(() => {  // Optional: you might want to delay form submission until the modal is visible
+            form.submit(); // Programmatically submit the form to the server
+        }, 1000); // Adjust the delay as needed
+    } else {
+        console.log("Invalid ECLI, not showing the modal.");
     }
 });
 
