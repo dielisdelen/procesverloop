@@ -8,7 +8,6 @@ from api.data_api import api_blueprint
 from dotenv import load_dotenv
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
-from redis import Redis
 
 # Limiter imports
 from limiter_setup import init_limiter
