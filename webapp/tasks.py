@@ -30,13 +30,16 @@ def scrape_case_task(ecli_id):
         db.session.add(new_record)
         db.session.commit()
         return ecli_id
+    pass
 
 @celery.task
 def openai_response_task(ecli_id):
     with current_app.app_context():
         response_content = get_openai_response(ecli_id)
         return response_content
+    pass
 
 @celery.task
 def error_handler(uuid):
     print(f'Task {uuid} raised exception!')
+    pass
