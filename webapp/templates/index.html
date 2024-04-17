@@ -35,8 +35,11 @@
         <p class="copy_button"></p>
       </a>
       <div class="container">
-        <a href="/over" class="nav_button w-inline-block">
-          <p class="copy_button">Over de makers</p>
+        <a href="/over" class="nav_button">
+          Over de makers
+        </a>
+        <a href="mailto:feitlijn@patroon.nl" class="nav_button">
+        Contact
         </a>
       </div>
     </div>
@@ -71,45 +74,44 @@
         <div class="container-w3 gutter-outside">
           <div class="text-center">
             <div class="intro-description">
-              <p class="copy-medium">Vul een ECLI nummer in en maak een tijdlijn van de belangrijkste feiten uit een vonnis of arrest.</p>
+              <p class="copy-medium">Voer een ECLI in en maak een tijdlijn van de belangrijkste feiten uit een vonnis of arrest.</p>
             </div>
           </div>
         </div>
+      
         <div class="form_wrapper">
-          <div class="form_wrapper_with_button w-form">
+          <div class="input_with_suggestion">
             <form id="ecli_form" name="ecli_id" data-name="Email Form" method="post" action="/" class="form" type="text" required>
               <!-- Ensure the input name matches what your Flask app expects -->
-              <input class="ecli_field w-input" maxlength="256" name="ecli_id" data-name="ECLI ID" placeholder="ECLI:NL:PHR:1965:AB7079" type="text" id="ecli_id">
+              <input class="ecli_field w-input" maxlength="256" name="ecli_id" data-name="ECLI ID" placeholder="Voer een ECLI in" type="text" id="ecli_id">
               <!-- Hidden input field to indicate the action -->
               <input type="hidden" name="action" value="extract">
               <input type="submit" id="ecli_button" class="submit-button w-button" value="Geef me de feiten">
             </form>
-            <div class="w-form-done">
-              <div>Thank you! Your submission has been received!</div>
-            </div>
-            <div class="w-form-fail">
-              <div>Oops! Something went wrong while submitting the form.</div>
-            </div>
+          
           </div>
-        </div>
+        </div> 
+
         <div class="text-center">
-          <p class="copy_small">Even geen ECLI nummer bij de hand? Probeer <span class="ecli_link"><a href="#"
+          <p class="copy_small">Geen ECLI bij de hand? Probeer <span class="ecli_link"><a href="#"
                 class="fillLink" data-text="ECLI:NL:PHR:1965:AB7079">ECLI:NL:PHR:1965:AB7079</a></span>.
           </p>
         </div>
       </div>
     </div>
 
+   
+
 
     
-
+    <div class="container-w3 gutter-outside">
     <div class="loader_wrapper" id="loader">
-    
-      <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
-
-    <dotlottie-player src="https://lottie.host/cdb47ecd-ddad-4f18-ab6e-2cd751b4db61/76J9YhiXFr.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
-    </div>
-
+      <p class="loading_text" id="loading-text">Loading...</p>
+      <div class="lottieplayer_centered">
+      <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script><dotlottie-player src="https://lottie.host/0160b17d-1a37-4dfa-9f16-f21068dedb34/YYDnYRq3DY.json" background="transparent" speed="1" style="width: 300px; height: 300px" direction="1" playMode="normal" loop autoplay></dotlottie-player>    
+  </div>
+  </div>
+</div>
 
 
 
@@ -122,7 +124,7 @@
           <a href="http://feitlijn.nl" class="footer_logo_link_wrapper"><img src="{{ url_for('static', filename='images/feitlijn_logo_big.svg') }}" loading="lazy" alt="" class="img_footer"></a>
           
 
-          <div class="copy_footer">Feitlijn is gemaakt door de mensen van Patroon, een legal design agency in Amsterdam. Wij maken juridische complexiteit toegankelijk met slimme technologie en goed ontwerp.</div>
+          <div class="copy_footer">Feitlijn is gemaakt door de mensen van Patroon, een legal design bureau in Amsterdam. Wij maken juridische complexiteit toegankelijk met slimme technologie en goed ontwerp.</div>
           <a href="http://patroon.nl" class="w-inline-block">
             <div class="logo_patroon w-embed"><svg viewbox="0 0 146 31" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 30.2618H4.24149V22.9598C4.24149 22.2071 4.16575 20.2875 4.12788 19.0454H4.16575C4.96103 21.4543 7.38474 23.1104 11.096 23.1104C16.4737 23.1104 19.882 19.1959 19.882 13.1737C19.882 7.56546 16.5115 3.91446 11.1718 3.91446C7.46048 3.91446 4.96103 5.72114 4.20362 8.54407H4.16575L4.24149 4.21558H0V30.2618ZM10.2629 19.6476C6.62733 19.6476 4.24149 17.6151 4.24149 14.4534V13.4748C4.31723 9.74853 6.6652 7.37726 10.1872 7.37726C13.5576 7.37726 15.6405 9.71089 15.6405 13.2866C15.6405 17.1634 13.5198 19.6476 10.2629 19.6476Z" fill="currentColor"></path>
@@ -134,7 +136,7 @@
                 <path d="M125.554 22.8093H129.796V13.8135C129.796 9.74853 132.144 7.52782 135.855 7.52782C139.225 7.52782 140.892 9.18394 140.892 12.1198V22.8093H145.133V11.1788C145.133 6.58684 142.217 3.91446 137.483 3.91446C133.128 3.91446 130.705 5.83406 129.682 9.18394H129.644L129.796 4.21558H125.554V22.8093Z" fill="currentColor"></path>
               </svg></div>
           </a>
-          <div class="copy_footer">© 2024 Patroon Legal Design B.V. <br>Gedempt Hamerkanaal 173, 1021 KP, Amsterdam</div>
+          <div class="copy_footer">© 2024 Patroon Legal Design B.V. <br>Gedempt Hamerkanaal 173, 1021 KP, Amsterdam<br><a href="mailto:feitlijn@patroon.nl">feitlijn@patroon.nl</a></div>
         </div>
       </div>
     </div>
@@ -157,6 +159,31 @@
   <script src="{{ url_for('static', filename='js/webflow.js') }}" type="text/javascript"></script>
 
   <script src="{{ url_for('static', filename='js/validation.js') }}"></script>
+
+<script>
+  const loadingTexts = [
+"Analyse van de uitspraak...",
+"Samenvatten van de standpunten...",
+"Samenvatten van het oordeel...",
+"Maken van de tijdlijn..."
+];
+
+let currentIndex = 0;
+
+function updateLoadingText() {
+  document.getElementById('loading-text').textContent = loadingTexts[currentIndex];
+  currentIndex = (currentIndex + 1) % loadingTexts.length;
+  document.getElementById('loading-text').style.animation = 'none';
+  setTimeout(() => {
+      document.getElementById('loading-text').style.animation = 'fadeInOut 3s linear';
+  }, 50);
+}
+
+setInterval(updateLoadingText, 3000);
+
+</script>
+
+
 </body>
 
 </html>
