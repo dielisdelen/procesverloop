@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 from limiter_setup import init_limiter
 
 # Celery imports
-# from celery_worker import scrape_case_task, openai_response_task, error_handler
+from tasks import scrape_case_task, openai_response_task, error_handler
 
 # General imports
 import json
@@ -53,9 +53,6 @@ def create_app():
                 return decorator
 
         limiter = DummyLimiter()
-
-    logger.info("importing celery worker stuff")
-    from .tasks import scrape_case_task, openai_response_task, error_handler
 
     @app.route('/', methods=['GET', 'POST'])
     @limiter.limit("5 per minute")
