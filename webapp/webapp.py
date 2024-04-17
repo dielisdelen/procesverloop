@@ -10,6 +10,9 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from redis import Redis
 
+# Limiter imports
+from limiter_setup import init_limiter
+
 import json
 import os
 
@@ -27,18 +30,7 @@ app.register_blueprint(api_blueprint, url_prefix='/api')
 db.init_app(app)
 
 if USE_REDIS_LIMITER:
-    from redis import Redis
-    from flask_limiter import Limiter
-    from flask_limiter.util import get_remote_address
-    
-    redis = Redis(host='pvredis-a42qr8.serverless.eun1.cache.amazonaws.com', port=6379, db=0, decode_responses=True, ssl=True)
-
-    limiter = Limiter(
-        app=app,
-        key_func=get_remote_address,  # Use the remote address for rate limiting
-        storage_uri="rediss://pvredis-a42qr8.serverless.eun1.cache.amazonaws.com:6379",
-        default_limits=["50 per hour", "5 per minute"]  # Set sensible defaults
-    )
+    limiter = init_limiter(app)
 else:
     # Define a dummy limiter decorator that does nothing
     class DummyLimiter:
