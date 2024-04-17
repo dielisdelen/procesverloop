@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, redirect, url_for, make_response
 from flask_sqlalchemy import SQLAlchemy
-from case_extractor_static import scrape_case
+# from case_extractor_static import scrape_case
 from datetime import datetime
 from openai_integration import get_openai_response
 from models import db, ScrapeRecord, OpenAIResponse
