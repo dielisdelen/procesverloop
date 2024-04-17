@@ -1,17 +1,23 @@
 from flask import Flask, request, render_template, redirect, url_for, make_response
+from dotenv import load_dotenv
+
+#Scraping imports
+from case_extractor_static import scrape_case
+
+#Database imports
+
 from flask_sqlalchemy import SQLAlchemy
-# from case_extractor_static import scrape_case
 from datetime import datetime
 from openai_integration import get_openai_response
 from models import db, ScrapeRecord, OpenAIResponse
-from api.data_api import api_blueprint
-from dotenv import load_dotenv
-from flask_limiter import Limiter
-from flask_limiter.util import get_remote_address
 
-# Limiter imports
+# API Imports
+from api.data_api import api_blueprint
+
+#Limiter imports
 from limiter_setup import init_limiter
 
+# General imports
 import json
 import os
 
@@ -44,7 +50,7 @@ with app.app_context():
     db.create_all()
 
 @app.route('/', methods=['GET', 'POST'])
-@limiter.limit("5 per minute")
+# @limiter.limit("5 per minute")
 def index():
     if request.method == 'POST':
         action = request.form.get('action')

@@ -5,7 +5,7 @@ import time
 import logging
 import os
 
-# os.environ['TMPDIR'] = '/var/www/tmp'
+os.environ['TMPDIR'] = '/var/www/tmp'
 
 # Configure logging
 if os.getenv('LOGGING_ENABLED', 'false').lower() == 'true':
@@ -20,8 +20,8 @@ def scrape_case(ecli_id):
     options.add_argument('--no-sandbox')  # Bypass OS security model, REQUIRED on Linux if running as root
     options.add_argument('--headless')  # Run Chrome in headless mode
     options.add_argument('--disable-dev-shm-usage')  # Overcome limited resource problems
-    # options.add_argument('--disable-gpu')
-    # options.add_argument('--remote-debugging-pipe')
+    options.add_argument('--disable-gpu')
+    options.add_argument('--remote-debugging-pipe')
 
     # Ensure the HOME and TMPDIR are set for www-data when initializing the driver
     with webdriver.Chrome(options=options) as driver:
@@ -30,7 +30,6 @@ def scrape_case(ecli_id):
             url = f"https://uitspraken.rechtspraak.nl/#!/details?id={ecli_id}"
             logging.info(f'Navigating to URL: {url}')
             driver.get(url)
-            print("Hij doet het!")
             
             # Wait and log dynamic content loading
             time.sleep(6)
