@@ -4,8 +4,6 @@ import os
 from dotenv import load_dotenv
 import logging
 
-import celery_worker
-
 # Load environment variables
 load_dotenv()
 
