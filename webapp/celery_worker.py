@@ -40,3 +40,4 @@ def openai_response_task(ecli_id):
 @celery.task
 def error_handler(uuid):
     print(f'Task {uuid} raised exception!')
+
