@@ -1,10 +1,9 @@
-from celery_config import celery
+from .celery_config import celery
 from models import db, ScrapeRecord
 from datetime import datetime
 from flask import current_app
 from case_extractor_static import scrape_case
 from openai_integration import get_openai_response
-from .celery_config import celery
 
 @celery.task
 def scrape_case_task(ecli_id):
