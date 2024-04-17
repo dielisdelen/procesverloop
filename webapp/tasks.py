@@ -5,6 +5,8 @@ from flask import current_app
 from case_extractor_static import scrape_case
 from openai_integration import get_openai_response
 
+celery.autodiscover_tasks()
+
 @celery.task
 def scrape_case_task(ecli_id):
     with current_app.app_context():
