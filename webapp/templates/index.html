@@ -81,13 +81,10 @@
       
         <div class="form_wrapper">
           <div class="input_with_suggestion">
-            <form id="ecli_form" name="ecli_id" data-name="Email Form" method="post" action="/" class="form" type="text" required>
-              <!-- Ensure the input name matches what your Flask app expects -->
-              <input class="ecli_field w-input" maxlength="256" name="ecli_id" data-name="ECLI ID" placeholder="Voer een ECLI in" type="text" id="ecli_id">
-              <!-- Hidden input field to indicate the action -->
-              <input type="hidden" name="action" value="extract">
-              <input type="submit" id="ecli_button" class="submit-button w-button" value="Geef me de feiten">
-            </form>
+            <form id="ecli_form" name="ecli_id" method="post" action="/extract" class="form">
+            <input class="ecli_field w-input" maxlength="256" name="ecli_id" placeholder="Voer een ECLI in" type="text" id="ecli_id">
+            <input type="submit" id="ecli_button" class="submit-button w-button" value="Geef me de feiten">
+        </form>
           
           </div>
         </div> 

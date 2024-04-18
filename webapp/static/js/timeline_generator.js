@@ -5,17 +5,19 @@ document.addEventListener('DOMContentLoaded', function() {
   const ecliId = timelineContainer.getAttribute('data-ecli-id');
 
   if (ecliId) {
+      console.log(`Fetching from URL: /api/get-data?ecli_id=${ecliId}`);
       fetch(`/api/get-data?ecli_id=${ecliId}`)
           .then(response => {
-              if (!response.ok) {
-                  throw new Error('Network response was not ok');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
               }
-              return response.json();
+            return response.json();
           })
           .then(data => {
-            // For debugging
-            console.log(data);
-            const openaiData = JSON.parse(data.openai_response);
+            console.log("Data received:", data);  // Debugging: Log entire data to see its structure.
+
+            // Assuming data.openai_response is already an object, not a string.
+            const openaiData = data.openai_response;
 
             // Display general information
             document.getElementById('ecli').textContent = `ECLI: ${openaiData.generalInfo.ECLI}`;
