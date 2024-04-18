@@ -10,7 +10,7 @@ os.environ['TMPDIR'] = '/var/www/tmp'
 # Configure logging
 if os.getenv('LOGGING_ENABLED', 'false').lower() == 'true':
     logging.basicConfig(filename='/run/procesverloop-logs/logfile.log',
-                        level=logging.INFO,
+                        level=logging.DEBUG,
                         format='%(asctime)s - %(levelname)s - %(message)s')
 else:
     logging.disable(logging.CRITICAL)  # Disable all logging
