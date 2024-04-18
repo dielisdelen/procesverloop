@@ -64,7 +64,7 @@ lottie-player {
 
 .emoji_card {
   flex: 1;
-  background-color: #ECEBFC;
+
   border-radius: 8px;
   padding: 1rem;
   box-sizing: border-box; /* Makes sure padding and border are included in the width */
@@ -77,6 +77,7 @@ lottie-player {
 
 .emojis {
   font-size: 4rem;
+  letter-spacing: 8px;
 }
 
 .feitlijn_subkop {
@@ -748,6 +749,7 @@ figure {
   width: 5rem;
   display: inline-block;
   margin-bottom: 3rem;
+  margin-top: 3rem;
 }
 
 .hero_logo_big {
@@ -985,8 +987,12 @@ figure {
   .ecli_field {
 
     padding: 1.35rem 2.25rem 1.35rem 2.25rem;
+    font-size: 1.5rem;
   }
+  .ecli_field::placeholder {
 
+    font-size: 1.5rem;
+  }
   .submit-button {
     width: 100%;
     right: 0rem;
@@ -1073,6 +1079,14 @@ figure {
     font-size: 5em;
   }
 
+  .container {
+    grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+
   .main-shapes-wrapper, .blending-group-wrapper {
     filter: blur(80px);
   }
@@ -1080,6 +1094,9 @@ figure {
   .shape-3 {
     width: 30em;
     height: 100em;
+  }
+  .emojis {
+    font-size: 3rem;
   }
 
   .copy_small {
@@ -1121,8 +1138,14 @@ figure {
     margin-right: 0;
   }
 
-
+  .feitlijn_standpunten_wrapper {
+    flex-direction: column;
+  }
  
+  .feitlijn_wrapper {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 
 
 }
