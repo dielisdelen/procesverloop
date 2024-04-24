@@ -26,10 +26,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function validateECLI() {
         console.log('validateECLI called');
         const ecliInputElement = document.getElementById('ecli_id');
-        const trimmedECLI = ecliInputElement.value.trim(); // Trim and store the cleaned ECLI
+        const trimmedECLI = ecliInputElement.value.trim().toUpperCase(); // Trim and store the cleaned ECLI
         ecliInputElement.value = trimmedECLI; // Set the input field's value to the trimmed version
     
-        const ecliPattern = /^ECLI:\w{2}:\w{2,6}:\d{4}:\w+$/;
+        const ecliPattern = /^ECLI:\w{2}:\w{2,6}:\d{4}:\w+$/i;
         if (!ecliPattern.test(trimmedECLI)) {
             alert("Ongeldige invoer. Zorg ervoor dat de ECLI in het juiste formaat is ingevoerd, zoals 'ECLI:NL:HR:2012:BY1234'.");
             return false;
