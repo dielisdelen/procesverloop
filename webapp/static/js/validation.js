@@ -9,9 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
             zoekveld.style.display = 'none';  // Hide zoekveld
 
             showLoader(); // Assuming you still want to show a loader if validation passes
-            setTimeout(() => {
-                this.submit(); // Submit the form programmatically after showing the loader or after any other required action
-            }, 1000); // Delay the submission if needed, or remove setTimeout if not necessary
         } else {
             console.log("Form submission prevented due to validation failure.");
         }

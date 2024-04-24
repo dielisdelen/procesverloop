@@ -20,6 +20,7 @@ from limiter_setup import init_limiter
 # General imports
 import json
 import os
+import time
 
 # Load environment variables
 load_dotenv()
@@ -88,6 +89,7 @@ def index():
                 # Add the new record to the session and commit it to the database
                 db.session.add(new_record)
                 db.session.commit()
+                time.sleep(1)
 
                 # After storing the scraped data, process it with OpenAI
                 get_openai_response(ecli_id)
