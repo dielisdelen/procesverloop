@@ -324,6 +324,7 @@ figure {
   max-width: 58em;
   margin-left: auto;
   margin-right: auto;
+  z-index: 1;
 }
 
 .gutter-outside {
@@ -344,6 +345,14 @@ figure {
   font-weight: 400;
   line-height: 1.45em;
 }
+
+.copy-small {
+  color: var(--white-smoke);
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1.3em;
+}
+
 
 .container-w1 {
   width: 100%;
@@ -479,6 +488,11 @@ figure {
   left: 0;
   transform: rotate(40deg);
 }
+
+.img_beta {
+  width: 25rem;
+}
+
 
 .shape-5 {
   background-color: #e7805b;
@@ -720,6 +734,35 @@ figure {
 }
 
 
+.rectangular-div {
+  width: 45rem;  /* Set the width of the rectangle */
+  height: 25rem; /* Set the height of the rectangle */
+  background-image: url('/static/images/beta.png'); /* Path to your transparent PNG */
+  background-size: cover;  /* Cover ensures the image covers the div completely */
+  background-position: center; /* Centers the background image in the div */
+  display: flex;  /* Use flexbox to align the text */
+  flex-direction: column;
+  align-items: center;  /* Align text vertically */
+  justify-content: center;  /* Align text horizontally */
+  color: var(--white-smoke);  /* Set the text color */
+  font-size: 1.2em;  /* Set the text size */
+  text-align: center;  /* Ensure text is centered if it wraps */
+  z-index: 1;
+  position: relative;
+  margin-top: 10rem;
+}
+
+
+.beta_text {
+  display: flex;
+  position: relative;
+
+  flex-direction: column;
+  padding-left: 12rem;
+  padding-right: 12rem;
+  margin-top: -100px;
+}
+
 
 .submit-button {
   background-color: var(--pink);
@@ -735,6 +778,27 @@ figure {
   font-size: 1.2rem;
   transition: all 0.2s;
 }
+
+.submit_button_small {
+  background-color: var(--pink);
+  color: var(--dark-grey);
+  border-radius: 3rem;
+  font-weight: 500;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.submit_button_small:hover {
+  background-color: hsl(294, 100%, 90%);
+  color: var(--dark-grey);
+  
+
+}
+
 
 .submit-button:hover {
   background-color: hsl(294, 100%, 90%);
@@ -788,6 +852,15 @@ figure {
   grid-row-gap: 2rem;
   display: flex;
 }
+
+.container_vertical {
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: first baseline
+}
+
 
 .nav_button {
   color: var(--white-smoke);
@@ -858,6 +931,19 @@ figure {
 }
 
 
+.beta_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2rem;
+  width: 65rem;
+  min-height: 20rem;
+  padding: 55px;
+  z-index: 1;
+  color: var(--white-smoke);
+
+}
+
 
 .footer {
   display: flex;
@@ -865,9 +951,6 @@ figure {
   align-items: center;
   background-color: var(--glass);
   border-radius: 2rem;
-
-
-
   width: 65rem;
   min-height: 20rem;
   padding: 55px;
@@ -907,6 +990,16 @@ figure {
 
 .logo_patroon {
   width: 5rem;
+}
+
+.container_horizontal {
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  
 }
 
 .div-block-9 {
@@ -1070,6 +1163,7 @@ figure {
   width: 4rem;
 }
 
+
   .intro-description {
     padding-left: 0;
     padding-right: 0;
@@ -1085,6 +1179,8 @@ figure {
     display: flex;
     flex-direction: column;
   }
+  
+ 
   
 
   .main-shapes-wrapper, .blending-group-wrapper {
