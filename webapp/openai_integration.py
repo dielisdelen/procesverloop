@@ -1,4 +1,4 @@
-from openai import OpenAI
+from openai import OpenAI, OpenAIError
 import os
 from dotenv import load_dotenv
 from models import OpenAIResponse, db, ScrapeRecord
@@ -53,8 +53,9 @@ def get_openai_response(ecli_id):
         db.session.commit()
         
         return response_content
-    except Exception as e:
+    except OpenAIError as e:
         current_app.logger.error(f"Error sending data to OpenAI for ECLI ID: {ecli_id}, Error: {e}")
+        print(f"Error: {e}")
         return "Error processing data with OpenAI."
 
 
