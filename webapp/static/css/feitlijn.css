@@ -1,3 +1,241 @@
+body {
+  background-color: var(--black);
+  color: #333;
+  font-family: Manrope, sans-serif;
+  font-size: 1rem;
+  line-height: 1.2em;
+}
+
+
+.masonry-wrapper {
+  width: 65rem;
+  margin-top: 8rem;
+}
+
+.masonry-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1rem;
+  margin-bottom: 4rem;
+}
+
+.grid-item {
+  display: block;
+  background-color: rgba(255, 255, 255, 0.1); /* Light background for glass effect */
+  border-radius: 1rem;
+  padding: 3rem 1rem 2rem 1rem;  
+  margin-bottom: 2rem;
+  width: calc(33.333% - 2rem);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: var(--white-smoke);
+  backdrop-filter: blur(10px); /* Key property for glass effect */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 0px solid rgba(255, 255, 255, 0.2);
+}
+
+
+.grid-item:hover {
+  transform: scale(1.05);
+  background-color: #E1FF28; /* Yellow background on hover */
+  color: #141365; /* Dark blue text on hover */
+}
+
+.emojis-grid {
+ 
+  font-size: 40px;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+}
+
+.case-name {
+  font-size: 1rem;
+  margin-bottom: 4px;
+  margin-top: 1rem;
+}
+
+.case-date {
+  font-size: .8rem;
+  margin-bottom: 1rem;
+}
+
+.case-ecli {
+  color: #7870FF; /* Specific color for ECLI identifier */
+  font-size: .8rem;
+}
+
+
+
+.accordion-wrapper {
+  margin-top: 50px;
+}
+
+.accordion-item {
+  background-color: var(--glass);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 24px 30px 14px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, .03);
+}
+
+.accordion-item-trigger {
+  justify-content: space-between;
+  align-items: flex-start;
+  display: flex;
+}
+
+.accordion-heading {
+  cursor: pointer;
+  flex: 1;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1em;
+  line-height: 30px;
+}
+
+.icon.accordion-icon {
+  color: rgba(0, 0, 0, .6);
+  cursor: pointer;
+  font-size: 32px;
+  line-height: 30px;
+}
+
+.accordion-item-content {
+  margin-top: 10px;
+  margin-right: 30px;
+  overflow: hidden;
+}
+
+
+.timelineContainer {
+  max-width: 100%;
+  /* Sets a maximum width for the timeline */
+  margin: 0 auto;
+  /* Centers the timeline in the middle of the page */
+  padding: 20px;
+  /* Adds some space inside the container */
+  background-color: #f9f9f9;
+  /* Optional: Sets a background color for the container */
+  border-radius: 8px;
+  /* Optional: Rounds the corners of the container */
+}
+
+#eventList {
+  list-style-type: none;
+  position: relative;
+  padding: 0;
+}
+
+#eventList::before {
+  /* Line connecting events */
+  content: '';
+  position: absolute;
+  left: 47px;
+  /* Adjust so the line is in the middle of the circles */
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background-color: #333;
+}
+
+.event-item {
+  position: relative;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  /* Space between events */
+  padding-left: 100px;
+  /* Provides space for the date, circle, and vertical line */
+}
+
+/* New styles for date, party, and description for better alignment and spacing */
+.event-date,
+.event-party,
+.event-description {
+  margin: 5px 0;
+}
+
+.event-date {
+  font-weight: bold;
+}
+
+.event-party {
+  font-style: italic;
+}
+
+/* Style for the circle */
+.event-item::before {
+  content: '';
+  position: absolute;
+  left: 40px;
+  /* Aligns with the vertical timeline line */
+
+  /* Adjust based on your layout for vertical alignment */
+  height: 10px;
+  width: 10px;
+  background-color: #fff;
+  /* Circle color - can match the page background or be different */
+  border: 4px solid #333;
+  /* Border color to match the timeline */
+  border-radius: 50%;
+  /* Makes the shape a circle */
+  z-index: 1;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 50%;
+  top: 30%;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  transform: translate(-50%, -50%);
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  -webkit-animation-name: fadeIn; /* Fade in the background */
+  -webkit-animation-duration: 0.4s;
+  animation-name: fadeIn;
+  animation-duration: 0.4s
+}
+
+/* Modal Content */
+.modal-content {
+  position: fixed;
+  bottom: 0;
+  background-color: #fefefe;
+  width: 100%;
+  -webkit-animation-name: slideIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: slideIn;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+  from {bottom: -300px; opacity: 0} 
+  to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+  from {bottom: -300px; opacity: 0}
+  to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0} 
+  to {opacity: 1}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0} 
+  to {opacity: 1}
+}
+
+
+
 .form_wrapper {
 position: relative;
 display: flex;
@@ -58,7 +296,7 @@ lottie-player {
 }
 
 .oordeel_wrapper {
-  margin-top: 2rem;
+  margin-bottom: 2rem;
 
 }
 
@@ -72,7 +310,8 @@ lottie-player {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 
 .emojis {
@@ -226,20 +465,14 @@ top: -6px; /* Moves the div up by 10 pixels */
 
 :root {
   --black: black;
-  --white-smoke: #f5f5f7;
-  --pink: #f9b0ff;
+  --white-smoke: #e0deff;
+  --pink: hsl(68, 100%, 58%);
   --glass: rgba(252, 246, 243, .15);
-  --blue: #0400d8;
-  --dark-grey: #242424;
+  --blue: #231b69;
+  --dark-grey: #231b69;
 }
 
-body {
-  background-color: var(--black);
-  color: #333;
-  font-family: Manrope, sans-serif;
-  font-size: 1rem;
-  line-height: 1.2em;
-}
+
 
 h1 {
   margin-top: 0;
@@ -340,10 +573,19 @@ figure {
   display: none;
 }
 
-.copy-medium {
+.copy-big {
   font-size: 1.8em;
   font-weight: 400;
   line-height: 1.45em;
+  color: var(--white-smoke);
+}
+
+
+.copy-medium {
+  font-size: 1.4em;
+  font-weight: 400;
+  line-height: 1.45em;
+  color: var(--white-smoke);
 }
 
 .copy-small {
@@ -424,6 +666,7 @@ figure {
   left: 0%;
   right: 0%;
   overflow: hidden;
+  z-index: -1;
 }
 
 .main-shapes-wrapper {
@@ -438,7 +681,7 @@ figure {
 
 .shape-1 {
   transform-style: preserve-3d;
-  background-color: #4e4e4e;
+  background-color: #7774af;
   border-radius: 999em;
   width: 40em;
   height: 40em;
@@ -452,7 +695,7 @@ figure {
 }
 
 .shape-2 {
-  background-color: #2600ff;
+  background-color: #221e6e;
   border-radius: 999em;
   width: 43em;
   height: 40em;
@@ -466,7 +709,7 @@ figure {
 }
 
 .shape-3 {
-  background-color: #564eff;
+  background-color: #250396;
   border-radius: 999em;
   width: 53em;
   height: 100em;
@@ -477,17 +720,6 @@ figure {
   transform: translate(80vw, 70vh);
 }
 
-.shape-4 {
-  background-color: #f6c779;
-  border-radius: 999em;
-  width: 65em;
-  height: 40em;
-  margin-left: auto;
-  position: absolute;
-  top: -11.3em;
-  left: 0;
-  transform: rotate(40deg);
-}
 
 .img_beta {
   width: 25rem;
@@ -495,7 +727,7 @@ figure {
 
 
 .shape-5 {
-  background-color: #e7805b;
+  background-color: #894ac9;
   border-radius: 999em;
   width: 30em;
   height: 30em;
@@ -508,7 +740,7 @@ figure {
 }
 
 .shape-6 {
-  background-color: #a0bce0;
+  background-color: #030037;
   border-radius: 999em;
   width: 66em;
   height: 60em;
@@ -534,7 +766,7 @@ figure {
 }
 
 .shape-8 {
-  background-color: #9fc68e;
+  background-color: #221e6e;
   border-radius: 999em;
   width: 47em;
   height: 119em;
@@ -548,7 +780,7 @@ figure {
 }
 
 .shape-9 {
-  background-color: #0400d8;
+  background-color: #221e6e;
   border-radius: 999em;
   width: 30em;
   height: 119em;
@@ -599,7 +831,7 @@ figure {
   margin-bottom: 10rem;
   padding: 4rem 3rem;
   display: flex;
-  box-shadow: 1px 1px 15px 3px rgba(255, 136, 223, .8);
+  box-shadow: 1px 1px 15px 3px var(--white-smoke);
 }
 
 .div-block-3 {
@@ -631,7 +863,6 @@ figure {
   grid-row-gap: 2.3rem;
   flex-flow: column;
   align-items: center;
-  padding-bottom: 2rem;
   display: flex;
 }
 
@@ -726,7 +957,8 @@ figure {
 }
 
 .rounded-button:hover {
-  background-color: hsl(294, 100%, 90%);
+  background-color: #7870ff;
+  color: #e0deff
 }
 
 .rounded-button:focus {
@@ -769,7 +1001,6 @@ figure {
   color: var(--dark-grey);
   border-radius: 3rem;
   font-weight: 700;
-  position: absolute;
   right: 1rem;
   padding-top: 2rem;
   padding-bottom: 2rem;
@@ -779,29 +1010,23 @@ figure {
   transition: all 0.2s;
 }
 
+.position_absolute {
+  position: absolute;
+}
+
 .submit_button_small {
-  background-color: var(--pink);
-  color: var(--dark-grey);
   border-radius: 3rem;
   font-weight: 500;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
   font-size: 1rem;
-  transition: all 0.2s;
-}
-
-.submit_button_small:hover {
-  background-color: hsl(294, 100%, 90%);
-  color: var(--dark-grey);
-  
 
 }
 
 
 .submit-button:hover {
-  background-color: hsl(294, 100%, 90%);
+  background-color: #7870ff;
+  color: #e0deff;
 }
 
 .ecli_link {
@@ -1066,7 +1291,7 @@ figure {
   overflow: hidden;
 }
 
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 1000px) {
   body {
     background-color: var(--black);
     color: var(--white-smoke);
@@ -1075,6 +1300,11 @@ figure {
 
   .form {
     display: block;
+  }
+
+  .masonry-wrapper {
+    width: 90%;
+
   }
 
   .ecli_field {
@@ -1158,6 +1388,8 @@ figure {
     line-height: 1.4em;
   }
 
+
+  
 
   .img_footer {
   width: 4rem;
@@ -1244,7 +1476,21 @@ figure {
   }
 
 
+  .grid-item {
+    width: 100%; /* Adjusted for full width on smaller screens */
+    padding: 2rem; /* Reduce padding */
 }
+.emojis {
+    font-size: 30px; /* Smaller emoji size */
+}
+
+
+
+
+}
+
+
+
 
 @media screen and (max-width: 479px) {
   .shape-4 {
