@@ -9,7 +9,7 @@ body {
 
 .masonry-wrapper {
   width: 65rem;
-  margin-top: 8rem;
+  margin-top: 2rem;
 }
 
 .masonry-grid {
@@ -45,7 +45,7 @@ body {
 .emojis-grid {
  
   font-size: 40px;
-  letter-spacing: 2px;
+  letter-spacing: 8px;
   margin-bottom: 2rem;
 }
 
