@@ -49,10 +49,16 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 const loadingTexts = [
-    "Analyse van de uitspraak...",
-    "Samenvatten van de standpunten...",
-    "Samenvatten van het oordeel...",
-    "Maken van de tijdlijn..."
+    "Opzoeken van de tekst van de uitspraak",
+    "Analyse van de stellingen van partijen...",
+    "Analyse van de rechtsoverwegingen",
+    "Analyse van het dictum...",
+    "Samenvatten van het standpunt van de eiser...",
+    "Samenvatten van het standpunt van de verweerder...",
+    "Samenvatten van het oordeel van de rechter...",
+    "Filteren van de belangrijkste gebeurtenissen",
+    "Op chronologische volgorde zetten van de feiten",
+    "Maken van de Feitlijn..."
 ];
 
 let currentIndex = 0;
