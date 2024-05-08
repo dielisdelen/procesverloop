@@ -1,15 +1,11 @@
-<!DOCTYPE html><!--  This site was created in Webflow. https://www.webflow.com  -->
-<!--  Last Published: Wed Apr 03 2024 10:16:20 GMT+0000 (Coordinated Universal Time)  -->
+<!DOCTYPE html>
 <html data-wf-page="660d1e1bc41ee0a77834068a" data-wf-site="660c42b6611eedc1b7303e14">
 
 <head>
   <meta charset="utf-8">
-  <title>Over Feitlijn</title>
-  <meta content="Result" property="og:title">
-  <meta content="Result" property="twitter:title">
+  <title>Aanmelden</title>
   <meta content="width=device-width, initial-scale=1" name="viewport">
-  <meta content="Webflow" name="generator">
- 
+
   <meta property="og:title" content="Feitlijn: maak een tijdlijn van de feiten uit een vonnis">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.feitlijn.nl">
@@ -47,14 +43,12 @@
           </svg></div>
       </a>
       <div class="container">
-       
         <a href="/login" class="nav_button">
           Inloggen
         </a>
         <a href="/aanmelden" class="nav_button">
           Aanmelden
         </a>
-    
         <a href="/over" class="nav_button">
           Over de makers
         </a>
@@ -84,9 +78,41 @@
     </div>
   
 
-    <div class="hero_wrapper"><div class="container-w1 gutter-outside"><div class="text-center"><div class="title-highlight-wrapper"><div class="title-highlight">Legal AI&nbsp;Tool</div></div><img src="https://assets-global.website-files.com/660c42b6611eedc1b7303e14/660d1e417df24501dd9c5d65_feitlijn_logo_big.svg" loading="lazy" alt="" class="hero_logo_big"></div></div><div class="container-w3 gutter-outside"><div class="text-center"><div class="intro-description"><p class="copy-medium">Feitlijn is gemaakt door de mensen van Patroon, een legal design bureau in Amsterdam. Wij maken juridische complexiteit toegankelijk met slimme technologie en goed ontwerp. </p></div></div></div></div>
-<div class="faq_wrapper"><div class="container-w3 gutter-outside"><div class="accordion-wrapper"><div class="accordion-item"><div id="q1" class="accordion-item-trigger"><h4 class="accordion-heading"><strong>Voor wie is feitlijn gemaakt?</strong></h4></div><div class="accordion-item-content"><p>Feitlijn is gemaakt voor iedereen die wel eens jurisprudentieonderzoek doet. Vooral studenten en advocaten dus. </p></div></div><div class="accordion-item"><div id="q1" class="accordion-item-trigger"><h4 class="accordion-heading"><strong>Wat kan ik ermee?</strong></h4></div><div class="accordion-item-content"><p>Feitlijn maakt een tijdlijn van de belangrijkste gebeurtenissen die tot de uitspraak hebben geleid. Het helpt je om in korte tijd te zien waar de zaak in grote lijnen over gaat. Het is dus geen vervanging van een grondige analyse van jurisprudentie. </p></div></div><div class="accordion-item"><div id="q1" class="accordion-item-trigger"><h4 class="accordion-heading"><strong>Wat is ECLI?</strong></h4></div><div class="accordion-item-content"><p>ECLI staat voor "European Case Law Identifier," een gestandaardiseerde codereeks die wordt gebruikt om Europese rechtspraak uniek te identificeren.<br><br>Een ECLI-code bestaat uit vijf delen: de code "ECLI", een code voor het land van herkomst, het jaar van de uitspraak, de code van de rechtbank die de uitspraak heeft gedaan, en een uniek nummer voor de zaak. </p></div></div><div class="accordion-item"><div id="q1" class="accordion-item-trigger"><h4 class="accordion-heading"><strong>Welke uitspraken kan ik invullen?</strong></h4></div><div class="accordion-item-content"><p>Op dit moment kan Feitlijn alleen nog Nederlandse uitspraken begrijpen die op rechtspraak.nl zijn gepubliceerd. We werken achter de schermen hard aan een internationale versie. Wil je een seintje als het zover is? Stuur ons een <a href="mailto:feitlijn@patroon.nl">mailtje</a>.</p></div></div><div class="accordion-item"><div id="q1" class="accordion-item-trigger"><h4 class="accordion-heading"><strong>Hoe werkt het?</strong></h4></div><div class="accordion-item-content"><p>Feitlijn zoekt met het ECLI nummer de tekst van de uitspraak. Die tekst wordt doorgestuurd naar OpenAI. Op basis van een aantal prompts destilleert OpenAI de belangrijkste gebeurtenissen, en zet die netjes in een tabelletje. Dat tabelletje zetten wij vervolgens weer om in een visuele tijdlijn. </p></div></div><div class="accordion-item"><div id="q1" class="accordion-item-trigger"><h4 class="accordion-heading"><strong>Waarom hebben jullie Feitlijn gemaakt?</strong></h4></div><div class="accordion-item-content"><p>Onze missie is om het recht toegankelijker te maken. Dan doen we door intuïtief ontwerp te combineren met slimme techniek. </p></div></div></div></div></div>
+    <div class="masonry-wrapper">
+      <div class="container-w3 gutter-outside">
+        <div class="text-center">
+          <div class="intro-description">
+            <h2 class="copy-medium">Aanmelden
+          </div>
+        </div>
+      </div>
+      <div class="login-card">
+          <form action="/submit-your-login-form" method="post">
+              <div class="input-group">
+                  <label for="naam">Naam</label>
+                  <input class="input-field" type="text" id="naam" name="naam" required>
+              </div>
+              <div class="input-group">
+                <label for="naam">Organisatie</label>
+                <input class="input-field" type="text" id="naam" name="organisatie" required>
+            </div>
+              <div class="input-group">
+                <label for="email">Email-adres</label>
+                <input class="input-field" type="email" id="email" name="email" required>
+            </div>
 
+
+              <div class="input-group">
+                  <label for="password">Wachtwoord</label>
+                  <input class="input-field" type="password" id="password" name="password" required>
+              </div>
+             
+              <button class="submit-button submit_button_small button-full" type="submit">Aanmelden</button>
+          </form>
+          <p class="signup-text spacing-top">Heb je al een account? <a href="/login">Log in</a>.</p>
+      </div>
+    </div>
+    
 
 <div class="rectangular-div">
   <div class="beta_text">
@@ -94,6 +120,7 @@
   <a href="https://1ddvfzhpomh.typeform.com/to/MjwHrvUd" class="submit_button_small" target="_blank">Kom op de wachtlijst</a>
 </div>
 </div>
+
 
 
 <div class="footer_wrapper">

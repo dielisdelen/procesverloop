@@ -109,6 +109,18 @@ def timeline():
 def new_page():
     return render_template('over.html')
 
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/aanmelden')
+def aanmelden():
+    return render_template('aanmelden.html')    
+
+@app.route('/profiel')
+def profiel():
+    return render_template('profiel.html')   
+
 @app.errorhandler(429)
 def ratelimit_handler(e):
     return render_template('429.html'), 429
